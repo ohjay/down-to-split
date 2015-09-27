@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DownToSplit</title>
+  <title>Down to Split [D2S]</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Voltaire|Francois+One' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header>
+    <h1><a href="/">down to SPLIT</a><br>. . . . . . . . . .</h1>
+    <div id="header-bar">
+      <ul id="header-ul">
+        <li><a href="/expenses">Expenses</a></li>
+        <li><a href="/">Debt Listings</a></li>
+        <li><a href="/">Price Comparison</a></li>
+        <li><a href="/">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <!-- This will be filled in by individual pages -->
+  <%= yield %>
+  
+  <footer>
+    <ul>
+      <li>D2S is [not] a registered trademark.</li>
+      <div class="pull-right">
+        <li><a href="/">About</a></li>
+        <li><a href="/">Contact</a></li>
+      </div>
+    </ul>
+  </footer>
 </body>
 </html>
