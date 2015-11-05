@@ -84,15 +84,30 @@ li {
     opacity: 0.9;
 }
 
+#header-ul-wrapper {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 #header-ul {
-    display: table-cell;
-    height: 55px;
-    vertical-align: middle;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 5px 0;
 }
 
 #header-ul li {
-    padding-left: 130px;
-    padding-right: 130px;
+    float: left;
+    text-align: center;
+    width: 25%;
+    margin: 12px 0 0 0;
+    padding: 6px 0;   
+}
+
+#main-content {
+    margin-left: 17.85%;
+    font-size: 150%;
 }
 
 #footer-bar {
