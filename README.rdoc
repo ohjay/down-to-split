@@ -1,9 +1,12 @@
-== README
+= Down to Split
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Money management software for room 304.
 
-Things you may want to cover:
+As my first foray into Rails web development, I wanted to make something simple (but still at least somewhat practical). I believe that D2S meets the mark on both fronts, but hey – we'll soon see.
+
+In progress!
+
+== Documentation
 
 * Ruby version
 
@@ -23,6 +26,4 @@ Things you may want to cover:
 
 * ...
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+TODO: annotate models/controllers and run <tt>rake doc:app</tt>.
