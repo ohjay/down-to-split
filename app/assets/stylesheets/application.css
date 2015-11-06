@@ -50,6 +50,11 @@ li {
     padding: 0px 30px;
 }
 
+li.default-li {
+    display: list-item;
+    padding: 0;
+}
+
 .stay-black {
     color: #000;
 }

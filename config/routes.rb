@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users
   root to: 'pages#index'
   get 'expenses', to: 'pages#expenses'
   

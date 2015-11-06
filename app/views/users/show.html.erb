@@ -1,0 +1,15 @@
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<p>Username: <%= @user.username if @user.username %></p>
+<p>Email: <%= @user.email if @user.email %></p>
+<span>Your expenses:</span>
+<ul>
+  <% @user.purchases.each do |p| %>
+    <li class="default-li">Cost: <%= p.cost %></li>
+  <% end %>
+</ul>
+
+<% if @user == current_user %>
+  (Hey, you're the user that's signed in right now! Hi, <%= @user.username %>!)
+<% end %>
