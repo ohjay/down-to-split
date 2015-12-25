@@ -1,10 +1,10 @@
-This is the expenses page!<br>
+This is the debt page! Sounds fun, right?<br>
 
 <% if user_signed_in? %>
-	<span>Your expenses:</span>
+	<span>Your debts:</span>
 	<ul>
 	  <% current_user.purchases.each do |p| %>
-	    <li class="default-li">Cost: <%= p.cost %></li>
+	    <li class="default-li">Cost: <%= p.cost %> owed to...</li>
 	  <% end %>
 	</ul>
 <% else %>

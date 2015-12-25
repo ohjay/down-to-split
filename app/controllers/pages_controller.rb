@@ -4,4 +4,13 @@ class PagesController < ApplicationController
   
   def expenses
   end
+  
+  def debt
+  end
+  
+  def pricecomp
+  end
+  
+  def about
+  end
 end

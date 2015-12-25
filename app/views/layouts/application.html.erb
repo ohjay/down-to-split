@@ -15,8 +15,8 @@
     <div id="header-ul-wrapper">
       <ul id="header-ul">
         <li><a href="/expenses">Expenses</a></li>
-        <li><a href="/">Debt Listings</a></li>
-        <li><a href="/">Price Comparison</a></li>
+        <li><a href="/debt">Debt Listings</a></li>
+        <li><a href="/pricecomp">Price Comparison</a></li>
         <li>
           <% if user_signed_in? %>
             <%= link_to current_user.username, user_path(current_user.id) %> <%= link_to "(Sign Out)", destroy_user_session_path, :method => :delete %>
@@ -40,14 +40,10 @@
   
   <footer>
     <div id="footer-bar"></div>
-    <ul>
-      <li><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
-      <li id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
-      <div class="pull-right">
-        <li class="space-please"><a href="/"><span class="footer-overline">About</span></a></li>
-        <li class="space-please"><a href="/"><span class="footer-overline">Contact</span></a></li>
-        <li class="space-please"><a href="/"><span class="footer-overline">Donate</span></a><li>
-      </div>
+    <ul id="footer-ul">
+      <li class="footer-li" id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
+	  <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
+      <li class="footer-li"><a href="/about"><span class="footer-overline">About</span></a></li>
     </ul>
   </footer>
 </body>
