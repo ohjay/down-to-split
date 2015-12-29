@@ -1,10 +1,11 @@
 = Down to Split
 
-Money management software for room 304.
+Down to Split (D2S) is a Rails web application that helps people manage their finances. Users can track the purchases they make, compare expenses to a weekly budget, split costs with their friends, and find the lowest price for an item at nearby stores.
 
-As my first foray into Rails web development, I wanted to make something simple (but still at least somewhat practical). I believe that D2S meets the mark on both fronts, but hey – we'll soon see.
+In progress.
 
-In progress!
+== Call to Action
+If you're reading this, Sagang, feel free to try your hand at frontend or anything else you'd like to do!
 
 == Documentation
 
@@ -20,10 +21,6 @@ In progress!
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
-
-* ...
 
 TODO: annotate models/controllers and run <tt>rake doc:app</tt>.

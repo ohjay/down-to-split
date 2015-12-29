@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106043314) do
+ActiveRecord::Schema.define(version: 20151229070119) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20151106043314) do
 
   add_index "expenses", ["purchase_id"], name: "index_expenses_on_purchase_id"
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "product_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "purchases", force: :cascade do |t|
     t.date     "date_purchased"
@@ -51,5 +57,12 @@ ActiveRecord::Schema.define(version: 20151106043314) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "vendors", force: :cascade do |t|
+    t.string   "vendor_name"
+    t.string   "location"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end
