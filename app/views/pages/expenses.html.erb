@@ -7,6 +7,12 @@ This is the expenses page!<br>
 	    <li class="default-li">Cost: <%= p.cost %></li>
 	  <% end %>
 	</ul>
+  
+  Enter a new purchase:
+  <%= form_for :product do |f| %>
+    Product name: <%= f.text_field :product_name %><br />
+    <%= f.submit "Add purchase" %>
+  <% end %>
 <% else %>
 	Only members can use this page. <%= link_to "Sign in", new_user_session_path %> or <%= link_to "create an account", new_user_registration_path %> now!
 <% end %>
