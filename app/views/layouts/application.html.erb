@@ -29,17 +29,19 @@
   </header>
   
   <br><br>
-  <div id="main-content">
-    <!-- Flash messages (apparently required by Devise) -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <!-- This will be filled in by individual pages -->
-    <%= yield %>
+  <div id="container">
+    <div id="main-content" class="container">
+      <!-- Flash messages (apparently required by Devise) -->
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+  
+      <!-- This will be filled in by individual pages -->
+      <%= yield %>
+    </div>
   </div>
   
   <footer>
-    <div id="footer-bar"></div>
+    <!-- <div id="footer-bar"></div> -->
     <ul id="footer-ul">
       <li class="footer-li" id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
 	  <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
