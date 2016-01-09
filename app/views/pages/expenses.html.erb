@@ -10,8 +10,8 @@ This is the expenses page!<br>
   
   Enter a new purchase:
   <%= form_for :product do |f| %>
-    Product name: <%= f.text_field :product_name %><br />
-    <%= f.submit "Add purchase" %>
+    Product name: <div class="field"><%= f.text_field :product_name %></div><br />
+    <%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %>
   <% end %>
 <% else %>
 	Only members can use this page. <%= link_to "Sign in", new_user_session_path %> or <%= link_to "create an account", new_user_registration_path %> now!

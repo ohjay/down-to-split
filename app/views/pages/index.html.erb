@@ -1,7 +1,7 @@
 This is the main page!
 <div class="jumbotron">
   <% if user_signed_in? %>
-    <h1>Welcome back, trusted user!</h1>
+    <h1>Welcome back <%= current_user.username if current_user.id %>!</h1>
     <p class="lead">
       You have signed in!  If this were a real app some sweet content
       would go here.  But it's just a test.  You might want to sign out now.
