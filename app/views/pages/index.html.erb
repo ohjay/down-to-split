@@ -6,7 +6,9 @@ This is the main page!
       You have signed in!  If this were a real app some sweet content
       would go here.  But it's just a test.  You might want to sign out now.
     </p>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: 'btn btn-large btn-danger' %>
+    <div class="buttonHolder">
+    	<%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: 'btn btn-large btn-danger' %>
+    </div>
   <% else %>
     <h1>Welcome, new user!</h1>
     <p class="lead">
