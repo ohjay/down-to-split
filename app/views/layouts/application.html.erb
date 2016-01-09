@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
   <title>Down to Split</title>
   <%= favicon_link_tag 'favicon.png' %>
@@ -11,7 +11,7 @@
 <body>
   <header>
     <h1><a href="/">down to SPLIT</a><br>. . . . . . . . . .</h1>
-    <div id="header-bar"></div>
+    <!-- <div id="header-bar"></div> -->
     <div id="header-ul-wrapper">
       <ul id="header-ul">
         <li><a href="/expenses">Expenses</a></li>
@@ -28,9 +28,8 @@
     </div>
   </header>
   
-  <br><br>
   <div id="container">
-    <div id="main-content" class="container">
+    <div id="main-content">
       <!-- Flash messages (apparently required by Devise) -->
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
@@ -44,8 +43,10 @@
     <!-- <div id="footer-bar"></div> -->
     <ul id="footer-ul">
       <li class="footer-li" id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
-	  <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
-      <li class="footer-li"><a href="/about"><span class="footer-overline">About</span></a></li>
+      <li>&copy; The D2S team [watch out; D2S also stands for Down to Sue]</li>
+      <li><a href="/about">About</a></li>
+	  <!-- <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
+      <li class="footer-li"><a href="/about"><span class="footer-overline">About</span></a></li> -->
     </ul>
   </footer>
 </body>

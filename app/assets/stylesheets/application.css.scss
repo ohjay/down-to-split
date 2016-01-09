@@ -10,9 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+html, body, #container { 
+    height: 85%; 
+}
 
 body {
     background-color: #F6F9FB;
@@ -23,7 +28,7 @@ body {
 
 body > #container {
     height: auto; 
-    min-height: 50%;
+    min-height: 85%;
 }
 
 h1 {
@@ -51,10 +56,10 @@ footer {
     border-top: 1px solid #000;
     color: #777;
     clear: both;
-    position: fixed;
+    position: relative;
     z-index: 10;
     height: 3em;
-    margin-top: -3em;
+    margin-top: -2em;
 }
 
 li {
@@ -107,16 +112,20 @@ li.default-li {
 }
 
 #header-ul-wrapper {
-    width: 80%;
+    position: relative;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
+    height: 55px;
+    background: #9CADB8;
+    opacity: 0.9;
 }
 
 #header-ul {
     width: 100%;
     list-style: none;
     padding: 0;
-    margin: 15px 0 5px 0;
+    /*margin: 15px 0 5px 0;*/
 }
 
 #header-ul li {
@@ -150,4 +159,41 @@ li.default-li {
     margin-left: 215px;
     border: 3px solid #547600;
     background-color: #8AC007;
+}
+
+.lead {
+    text-align: center;
+}
+
+
+/* User sign in and sign forms. */
+.border-form-div {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.border-form-div .form-signin-heading,
+.border-form-div .field {
+    margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+}
+
+.buttonHolder {
+    margin: 0 auto;
+    text-align: center;
 }
