@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'debt', to: 'pages#debt'
   get 'pricecomp', to: 'pages#pricecomp'
   get 'about', to: 'pages#about'
+  get "new", to: "pages#new", as: "new"
+  post "create", to: "pages#create", as: "create"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

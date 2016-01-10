@@ -1,17 +1,22 @@
 This is the expenses page!<br>
 
+<% @user = current_user %>
 <% if user_signed_in? %>
-	<span>Your expenses:</span>
+	<h3>Your expenses:</h3>
 	<ul>
-	  <% current_user.purchases.each do |p| %>
+	  <% @user.purchases.each do |p| %>
+	  	<li class="default-li">Product: <%= p.product_name %></li>
 	    <li class="default-li">Cost: <%= p.cost %></li>
 	  <% end %>
 	</ul>
   
-  Enter a new purchase:
-  <%= form_for :product do |f| %>
-    Product name: <div class="field"><%= f.text_field :product_name %></div><br />
-    <%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %>
+  <h3>Enter a new purchase:</h3>
+  <%= form_for :product, :url => create_path do |f| %>
+    Product: <%= f.text_field :product_name %><br />
+    <%= fields_for :purchase do |u| %>
+    	Cost: <span id="cost"><%= u.text_field :cost %></span>
+    <% end %>
+    <div class="submit"><%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %></div>
   <% end %>
 <% else %>
 	Only members can use this page. <%= link_to "Sign in", new_user_session_path %> or <%= link_to "create an account", new_user_registration_path %> now!
