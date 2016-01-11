@@ -8,5 +8,17 @@ This is the debt page! Sounds fun, right?<br>
 	  <% end %>
 	</ul>
 <% else %>
-	Only members can use this page. <%= link_to "Sign in", new_user_session_path %> or <%= link_to "create an account", new_user_registration_path %> now!
+  <div class="jumbotron">
+    <h1>Welcome, new user!</h1>
+    <p class="lead">
+      You must sign in or sign up before you can access our super sweet,
+      top secret content.
+    </p>
+    <div class="row-fluid">
+        <div class="buttonHolder">
+        	<%= link_to "Sign In", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
+        </div>
+    </div>
+  </div>
 <% end %>

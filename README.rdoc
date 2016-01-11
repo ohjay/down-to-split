@@ -4,23 +4,15 @@ Down to Split (D2S) is a Rails web application that helps people manage their fi
 
 In progress.
 
-== Call to Action
-If you're reading this, Sagang, feel free to try your hand at frontend or anything else you'd like to do!
-
 == Documentation
+=== Version
+D2S runs on Ruby 2.2+ and Rails 4.2.
 
-* Ruby version
+=== System dependencies
+None so far.
 
-* System dependencies
+=== Database setup
+Run <tt>rake db:reset</tt> to drop, create, and seed the database.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Deployment instructions
-
-TODO: annotate models/controllers and run <tt>rake doc:app</tt>.
+=== Deployment instructions
+We'll get to that.
