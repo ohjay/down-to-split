@@ -16,3 +16,22 @@
 //= require bootstrap-sprockets
 //= require script.js
 //= require_tree .
+    
+$(document).ready(function() {
+    $("#vsearch-box").bind("keyup", function() {
+        var form = $("#vsearch-form");
+        var formData = form.serializeArray();
+        
+        $.ajax({
+            url: "/live_search",
+            type: "GET",
+            data: {'q': formData[0]['value'] },
+            success: function(response) {
+                $("#vsearch-results").html(response);
+            },
+            error: function(response) {
+                $("#vsearch-results").html("AJAX error!");
+            },
+        });
+    }); 
+});

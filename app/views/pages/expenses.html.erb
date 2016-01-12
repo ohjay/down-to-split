@@ -18,6 +18,13 @@ This is the expenses page!<br>
     <% end %>
     <div class="submit"><%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %></div>
   <% end %>
+  
+  Vendor:
+  <form id="vsearch-form" method="get" action="">
+    <input id="vsearch-box" name="q" type="text" autocomplete="off" />
+  </form>
+
+  <div id="vsearch-results">No vendors found.</div>
 <% else %>
   <div class="jumbotron">
     <h1>Welcome, new user!</h1>
