@@ -9,7 +9,14 @@ This is the expenses page!<br>
 	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
 	  <% end %>
 	</ul>
-  
+  <h2>New Shopping Trip:</h2
+  <%= form_for :vendor do |e|, :url =>  %>
+  	Vendor: <%= e.text_field :vendor_name %><br />
+  	<%= fields_for :purchase do |u| %>
+  		Date: <%= date_field(:purchase, :date_purchased) %>
+  	<% end %>
+    <div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
+  <% end %>
   <h3>Enter a new purchase:</h3>
   <%= form_for :product, :url => create_path do |f| %>
     Product: <%= f.text_field :product_name %><br />
