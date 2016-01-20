@@ -9,7 +9,17 @@ This is the expenses page!<br>
 	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
 	  <% end %>
 	</ul>
-  <h2>New Shopping Trip:</h2
+  <h2>New Shopping Trip:</h2>
+  
+  <hr>
+  (search) Vendor:
+  <form id="vsearch-form" method="get" action="">
+    <input id="vsearch-box" name="q" type="text" autocomplete="off" />
+  </form>
+
+  <div id="vsearch-results">No vendors found.</div>
+  <hr>
+  
   <%= form_for :vendor do |e| %>
   	Vendor: <%= e.text_field :vendor_name %><br />
   	<%= fields_for :purchase do |u| %>

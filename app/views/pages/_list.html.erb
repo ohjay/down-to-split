@@ -1,0 +1,10 @@
+<% if @vendors.nil? || @vendors.empty? %>
+  No vendors found.
+<% else %>
+  Search results:
+  <ul>
+    <% @vendors.each do |v| %>
+      <li class="default-li"><%= v.vendor_name %></li>
+    <% end %>
+  </ul>
+<% end %>
