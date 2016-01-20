@@ -33,6 +33,24 @@ This is the expenses page!<br>
 		<% end %>
 	</table>
 	
+	<ul>
+	  <% @user.purchases.each do |p| %>
+	  	<li class="default-li">Product: <%= p.product_name %></li>
+	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
+	  <% end %>
+	</ul>
+  <h2>New Shopping Trip:</h2>
+  
+  <hr>
+  (search) Vendor:
+  <form id="vsearch-form" method="get" action="">
+    <input id="vsearch-box" name="q" type="text" autocomplete="off" />
+  </form>
+
+  <div id="vsearch-results">No vendors found.</div>
+  <hr>
+  
+  
 
   <h3>Enter a new purchase:</h3>
   <%= form_for :product, :url => create_path do |f| %>

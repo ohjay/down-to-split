@@ -1,10 +1,14 @@
 class PagesController < ApplicationController
+  def live_search
+    @vendors = Vendor.where("vendor_name like ?", "%" + params[:q] + "%")
+    render :layout => false
+  end
+  
   def index
   end
   
   def expenses
     @purchase = Purchase.new
-    
   end
   
   def debt

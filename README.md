@@ -6,7 +6,7 @@ In progress.
 
 Setup
 ---
-### Installation
+### Installation (for OS X)
 #### Ruby, Rails, and SQLite
 You will need Ruby 2.2+, Ruby on Rails 4.2.0, and SQLite 3.
 
@@ -19,7 +19,6 @@ To install Rails 4.2.0:
 ```
 gem install rails -v 4.2.0
 ```
-More details can be found [here](http://rubyonrails.org/download/).
 
 To install SQLite 3:
 Follow the instructions [here](http://www.tutorialspoint.com/sqlite/sqlite_installation.htm).

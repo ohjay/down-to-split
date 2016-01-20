@@ -17,3 +17,8 @@ end
   user = User.create! username: name, email: name + "@berkeley.edu", password: 'abcd1234', weekly_budget: 50.00
   user.expenses.create purchase: purchases[rand(purchases.size)]
 end
+
+# Starter set for vendors
+Vendor.create! vendor_name: "Trader Joe's", location: "1885 University Ave, Berkeley, CA 94703"
+Vendor.create! vendor_name: "Safeway", location: "6310 College Ave, Oakland, CA 94618"
+Vendor.create! vendor_name: "Berkeley Bowl", location: "2020 Oregon St, Berkeley, CA 94703"
