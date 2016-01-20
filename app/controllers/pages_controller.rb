@@ -21,6 +21,14 @@ class PagesController < ApplicationController
     @purchase = @product.build_purchase
   end
 
+  def vendor
+    @user = current_user
+    @vendor = Vendor.create vendor_params
+    @vendor.save
+
+    
+  end
+
   def create
     @user = current_user
     @product = Product.create product_params
@@ -40,6 +48,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def vendor_params 
+    params.require(:vendor).permit(:vendor_name) if params[:vendor]
+  end
 
   def product_params
     params.require(:product).permit(:product_name) if params[:product]

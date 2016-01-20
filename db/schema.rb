@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160120050228) do
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "purchase_id"
-    t.decimal  "amount"
+    t.decimal  "percentage"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
