@@ -24,8 +24,8 @@ class PagesController < ApplicationController
   def vendor
     @user = current_user
     @vendor = Vendor.create vendor_params
-
     @vendor.save
+
     
   end
 
