@@ -9,6 +9,17 @@ class PagesController < ApplicationController
   
   def expenses
     @purchase = Purchase.new
+    @totals = Hash.new(0)
+    @totals[:food] = 0
+    @totals[:household] = 0
+    @totals[:entertainment] = 0
+    @totals[:education] = 0
+    @totals[:travel] = 0
+    @totals[:clothing] = 0
+    @user.expenses.each do |e|
+      category = e.purchase.category
+      cost = e.percentage * e.purchase.cost
+      @totals[:category] += cost
   end
   
   def debt
