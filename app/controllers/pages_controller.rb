@@ -16,10 +16,12 @@ class PagesController < ApplicationController
     @totals[:education] = 0
     @totals[:travel] = 0
     @totals[:clothing] = 0
+    @totals[:total] = 0
     @user.expenses.each do |e|
       category = e.purchase.category
       cost = e.percentage * e.purchase.cost
-      @totals[:category] += cost
+      @totals[category] += cost
+      @totals[total] += cost
   end
   
   def debt
