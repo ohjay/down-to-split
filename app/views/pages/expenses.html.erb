@@ -6,7 +6,7 @@ This is the expenses page!<br>
 	<ul>
 	  <% @user.purchases.each do |p| %>
 	  	<li class="default-li">Product: <%= p.product_name %></li>
-	    <li class="default-li">Cost: <%= p.cost %></li>
+	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
 	  <% end %>
 	</ul>
   
