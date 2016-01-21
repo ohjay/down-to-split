@@ -17,28 +17,22 @@ This is the expenses page!<br>
 	<table class="table table-striped table-bordered table-condensed">
 		<tr>
 			<th>Date</th>
-			<th>Category</th>
 			<th>Product</th>
 			<th>Cost</th>
+			<th>Category</th>
 		</tr>
 
 		<% @user.purchases.each do |p| %>
 		<tr>
 			<td><%= p.date_purchased %></td>
-			<td><%= p.category %></td>
 			<td><%= p.product_name %></td>
 			<td><%= number_to_currency(p.cost) %></td>
+			<td><%= p.category %></td>
 			
 		</tr>
 		<% end %>
 	</table>
-	
-	<ul>
-	  <% @user.purchases.each do |p| %>
-	  	<li class="default-li">Product: <%= p.product_name %></li>
-	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
-	  <% end %>
-	</ul>
+
   <h2>New Shopping Trip:</h2>
   
   <hr>
