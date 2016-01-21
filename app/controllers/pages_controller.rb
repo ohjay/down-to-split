@@ -34,7 +34,7 @@ class PagesController < ApplicationController
     @vendor = Vendor.create vendor_params
     @vendor.save
     @shopping_trip = ShoppingTrip.create!
-    @vendor.shopping_trip = @shopping_trip
+    @vendor.shopping_trips << @shopping_trip
     @vendor.save
     @date = params[:purchase][:date_purchased]
 
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
     @purchase.save
 
     @shopping_trip = params[:shopping_trip]
-    @shopping_trip.purchase << purchase
+    @shopping_trip.purchases << @purchase
     @shopping_trip.save
     # session[:date] = nil
 
