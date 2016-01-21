@@ -46,9 +46,12 @@ ActiveRecord::Schema.define(version: 20160121052748) do
   end
 
   create_table "shopping_trips_users", id: false, force: :cascade do |t|
-    t.integer "shopping_trip_id", null: false
-    t.integer "user_id",          null: false
+    t.integer "shopping_trip_id"
+    t.integer "user_id"
   end
+
+  add_index "shopping_trips_users", ["shopping_trip_id"], name: "index_shopping_trips_users_on_shopping_trip_id"
+  add_index "shopping_trips_users", ["user_id"], name: "index_shopping_trips_users_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
