@@ -55,7 +55,7 @@ class PagesController < ApplicationController
     @purchase.date_purchased = params[:date]
     @purchase.save
 
-    @shopping_trip = params[:shopping_trip]
+    @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
     @shopping_trip.purchases << @purchase
     @shopping_trip.save
     # session[:date] = nil

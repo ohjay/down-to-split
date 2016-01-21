@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121052748) do
+ActiveRecord::Schema.define(version: 20160121064753) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,18 +32,24 @@ ActiveRecord::Schema.define(version: 20160121052748) do
 
   create_table "purchases", force: :cascade do |t|
     t.date     "date_purchased"
-    t.decimal  "cost",           precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "cost",             precision: 10, scale: 2
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "product_id"
     t.string   "category"
+    t.integer  "shopping_trip_id"
   end
+
+  add_index "purchases", ["shopping_trip_id"], name: "index_purchases_on_shopping_trip_id"
 
   create_table "shopping_trips", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
+    t.integer  "vendor_id"
   end
+
+  add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id"
 
   create_table "shopping_trips_users", id: false, force: :cascade do |t|
     t.integer "shopping_trip_id"
