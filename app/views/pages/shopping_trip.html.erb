@@ -1,0 +1,21 @@
+<h2><%= @shopping_trip.name %> </h2>
+<% @user = current_user %>
+
+<table class="table table-striped table-bordered table-condensed">
+		<tr>
+			<th>Date</th>
+			<th>Category</th>
+			<th>Product</th>
+			<th>Cost</th>
+		</tr>
+
+		<% @user.purchases.each do |p| %>
+		<tr>
+			<td><%= p.date_purchased %></td>
+			<td><%= p.category %></td>
+			<td><%= p.product_name %></td>
+			<td><%= number_to_currency(p.cost) %></td>
+			
+		</tr>
+		<% end %>
+	</table>

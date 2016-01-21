@@ -27,13 +27,23 @@ class PagesController < ApplicationController
 
   def trip
     @vendor = Vendor.new
+    @shopping_trip = ShoppingTrip.new
   end
 
   def create_trip
     @vendor = Vendor.create vendor_params
     @vendor.save
+    @shopping_trip = ShoppingTrip.create!
+    @vendor.shopping_trip = @shopping_trip
+    @vendor.save
     @date = params[:purchase][:date_purchased]
-    redirect_to trip_path(current_user.id, :date_purchased => @date)
+
+    @shopping_trip.name = @vendor.vendor_name + '(' + @date.to_s + ')'
+    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip)
+  end
+
+  def shopping_trip
+    @shopping_trip = ShoppingTrip.find(params[:id])
   end
 
   def create
@@ -44,6 +54,10 @@ class PagesController < ApplicationController
     @purchase = @product.purchases.create! purchase_params
     @purchase.date_purchased = params[:date]
     @purchase.save
+
+    @shopping_trip = params[:shopping_trip]
+    @shopping_trip.purchase << purchase
+    @shopping_trip.save
     # session[:date] = nil
 
     # @expense = Expense.new

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'live_search', to: "pages#live_search"
   get 'trip/:id', to: 'pages#trip', as: "trip"
   post 'trip/:id', to: 'pages#create_trip'
- 
+  get 'shopping_trip/:id', to: 'pages#shopping_trip', as: "shopping_trip"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
