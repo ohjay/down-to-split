@@ -3,14 +3,25 @@ This is the expenses page!<br>
 <% @user = current_user %>
 <% if user_signed_in? %>
 
-	<h2>New Shopping Trip:</h2
-	<%= form_for :vendor do |e| %>
+	<h2>New Shopping Trip:</h2>
+	<%= form_for :vendor, :url => trip_path(@user) do |e| %>
 		Vendor: <%= e.text_field :vendor_name %><br />
 		<%= fields_for :purchase do |u| %>
 			Date: <%= date_field(:purchase, :date_purchased) %>
 		<% end %>
-	<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
+		<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
 	<% end %>
+
+	<%= params %>
+
+	<hr>
+	(search) Vendor:
+	<form id="vsearch-form" method="get" action="">
+	<input id="vsearch-box" name="q" type="text" autocomplete="off" />
+	</form>
+
+	<div id="vsearch-results">No vendors found.</div>
+	<hr>
   
 	<h3>Your expenses:</h3>
 
@@ -33,35 +44,14 @@ This is the expenses page!<br>
 		<% end %>
 	</table>
 	
-	<ul>
+	<!-- <ul>
 	  <% @user.purchases.each do |p| %>
 	  	<li class="default-li">Product: <%= p.product_name %></li>
 	    <li class="default-li">Cost: <%= number_to_currency(p.cost) %></li>
 	  <% end %>
-	</ul>
-  <h2>New Shopping Trip:</h2>
-  
-  <hr>
-  (search) Vendor:
-  <form id="vsearch-form" method="get" action="">
-    <input id="vsearch-box" name="q" type="text" autocomplete="off" />
-  </form>
+	</ul> -->
 
-  <div id="vsearch-results">No vendors found.</div>
-  <hr>
-  
-  
-
-  <h3>Enter a new purchase:</h3>
-  <%= form_for :product, :url => create_path do |f| %>
-    Product: <%= f.text_field :product_name %><br />
-    <%= fields_for :purchase do |u| %>
-    	Cost: <span id="cost"><%= u.text_field :cost %></span><br />
-      Category:
-        <%= u.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
-    <% end %>
-    <div class="submit"><%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %></div>
-  <% end %>
+ 
 <% else %>
   <div class="jumbotron">
     <h1>Welcome, new user!</h1>
