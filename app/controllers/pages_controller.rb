@@ -33,9 +33,7 @@ class PagesController < ApplicationController
     @vendor = Vendor.create vendor_params
     @vendor.save
     @date = params[:purchase][:date_purchased]
-    Rails.logger.debug("debug:::" + @date.to_s)
-    puts params
-    redirect_to trip_path(current_user.id, :date => @date)
+    redirect_to trip_path(current_user.id, :date_purchased => @date)
   end
 
   def create
@@ -46,9 +44,6 @@ class PagesController < ApplicationController
     @purchase = @product.purchases.create! purchase_params
     @purchase.date_purchased = params[:date]
     @purchase.save
-
-    Rails.logger.debug("debug:::::" + @date.to_s)
-    Rails.logger.debug("debug:::::" + params[:date].to_s)
     # session[:date] = nil
 
     # @expense = Expense.new

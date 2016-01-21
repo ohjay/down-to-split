@@ -1,5 +1,5 @@
 <h3>Enter a new purchase:</h3>
-<%= form_for :product, :url => create_path do |f| %>
+<%= form_for :product, :url => create_path(:date => params[:date_purchased]) do |f| %>
 	Product: <%= f.text_field :product_name %><br />
 	<%= fields_for :purchase do |u| %>
 		Cost: <span id="cost"><%= u.text_field :cost %></span><br />
