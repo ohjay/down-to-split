@@ -23,11 +23,16 @@ gem install rails -v 4.2.0
 To install SQLite 3:
 Follow the instructions [here](http://www.tutorialspoint.com/sqlite/sqlite_installation.htm).
 
-#### D2S + Dependencies
-Download the project files, `cd` into the directory, and install dependencies:
+#### D2S Files and Dependencies
+Download the files and `cd` into the project directory:
 ```
 git clone https://github.com/ohjay/down-to-split.git
 cd down-to-split
+```
+
+Install dependencies:
+```ruby
+gem install bundler
 bundle install
 ```
 
