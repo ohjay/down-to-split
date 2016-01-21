@@ -1,3 +1,5 @@
 class Vendor < ActiveRecord::Base
   has_many :purchases
+  has_many :shopping_trips
+  accepts_nested_attributes_for :shopping_trips
 end

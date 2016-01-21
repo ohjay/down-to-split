@@ -2,11 +2,18 @@ This is the debt page! Sounds fun, right?<br>
 
 <% if user_signed_in? %>
 	<span>Your debts:</span>
-	<ul>
-	  <% current_user.purchases.each do |p| %>
-	    <li class="default-li">Cost: <%= p.cost %> owed to...</li>
-	  <% end %>
-	</ul>
+    <table class="table table-striped table-bordered table-condensed">
+      <tr>
+        <th>Cost</th>
+        <th>Owed To</th>
+      </tr>
+      <% @debts.each do |key, value| %>
+      <tr>
+        <td><%= value %></td>
+        <td><%= key %></td>  
+      </tr>
+      <% end %>
+    </table>
 <% else %>
   <div class="jumbotron">
     <h1>Welcome, new user!</h1>

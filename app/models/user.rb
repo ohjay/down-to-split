@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
          
   has_many :expenses, :class_name => 'Expense'
   has_many :purchases, :through => :expenses
+  has_and_belongs_to_many :shopping_trips
 
-  accepts_nested_attributes_for :purchases, :expenses
+  accepts_nested_attributes_for :purchases, :expenses, :shopping_trips
          
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
