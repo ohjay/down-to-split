@@ -25,13 +25,43 @@ class PagesController < ApplicationController
     @purchase = @product.build_purchase
   end
 
+  def trip
+    @vendor = Vendor.new
+    @shopping_trip = ShoppingTrip.new
+  end
+
+  def create_trip
+    @user = current_user
+    @vendor = Vendor.create vendor_params
+    @vendor.save
+    @shopping_trip = ShoppingTrip.create!
+    @vendor.shopping_trips << @shopping_trip
+    @vendor.save
+    @date = params[:purchase][:date_purchased]
+
+    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    @shopping_trip.save
+    @user.shopping_trips << @shopping_trip
+    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip)
+  end
+
+  def shopping_trip
+    @shopping_trip = ShoppingTrip.find(params[:id])
+  end
+
   def create
     @user = current_user
-    @product = Product.create product_params
-    
+    @product = Product.create! product_params
     @product.save
-    @purchase = @product.purchases.create purchase_params
+
+    @purchase = @product.purchases.create! purchase_params
+    @purchase.date_purchased = params[:date]
     @purchase.save
+
+    @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
+    @shopping_trip.purchases << @purchase
+    @shopping_trip.save
+    # session[:date] = nil
 
     # @expense = Expense.new
     # @expense.user_id = current_user.id

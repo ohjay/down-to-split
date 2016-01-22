@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "new", to: "pages#new", as: "new"
   post "create", to: "pages#create", as: "create"
   get 'live_search', to: "pages#live_search"
+  get 'trip/:id', to: 'pages#trip', as: "trip"
+  post 'trip/:id', to: 'pages#create_trip'
+  get 'shopping_trip/:id', to: 'pages#shopping_trip', as: "shopping_trip"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

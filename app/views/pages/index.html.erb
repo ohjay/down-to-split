@@ -1,5 +1,5 @@
 This is the main page!
-<div class="jumbotron">
+<div class="jumbotron" id="jtron">
   <% if user_signed_in? %>
     <h1>Welcome back, <%= current_user.username if current_user.id %>!</h1>
     <p class="lead">
