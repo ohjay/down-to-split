@@ -31,6 +31,7 @@ class PagesController < ApplicationController
   end
 
   def create_trip
+    @user = current_user
     @vendor = Vendor.create vendor_params
     @vendor.save
     @shopping_trip = ShoppingTrip.create!
@@ -38,7 +39,9 @@ class PagesController < ApplicationController
     @vendor.save
     @date = params[:purchase][:date_purchased]
 
-    @shopping_trip.name = @vendor.vendor_name + '(' + @date.to_s + ')'
+    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    @shopping_trip.save
+    @user.shopping_trips << @shopping_trip
     redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip)
   end
 

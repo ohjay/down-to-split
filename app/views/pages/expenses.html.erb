@@ -21,16 +21,14 @@ This is the expenses page!<br>
 	<div id="vsearch-results">No vendors found.</div>
 	<hr>
 
-	<h3>Shopping Trips</h3>
-
 	<table class="table table-striped table-bordered table-condensed">
 		<tr>
-			<th>Name</th>
+			<th>Shopping Trips</th>
 		</tr>
 
 		<% @user.shopping_trips.each do |s| %>
 		<tr>
-			<td><a href="shopping_trip_path"><%= s.name %></a></td>
+			<td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
 		</tr>
 		<% end %>
 	</table>
