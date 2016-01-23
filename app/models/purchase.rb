@@ -3,6 +3,7 @@ class Purchase < ActiveRecord::Base
   has_many :users, :through => :expenses
   belongs_to :product
   belongs_to :vendor
+  belongs_to :shopping_trip
   delegate :product_name, :to => :product, allow_nil: true
   accepts_nested_attributes_for :users, :expenses
 end
