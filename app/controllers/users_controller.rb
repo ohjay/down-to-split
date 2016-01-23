@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @total_spent = 0 
+    @user.purchases.weeks_purchases.each do |p|
+      @total_spent += p.cost
+    end
   end
 
   # GET /users/new
