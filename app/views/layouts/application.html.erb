@@ -9,47 +9,49 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <div id="banner">
-      <h1><a href="/">down to SPLIT</a><br>. . . . . . . . . .</h1>
+  <div id="wrapper">
+    <header>
+      <div id="banner">
+        <h1><a href="/">down to SPLIT</a><br>. . . . . . . . . .</h1>
+      </div>
+      <!-- <div id="header-bar"></div> -->
+      <div id="header-ul-wrapper">
+        <ul id="header-ul">
+          <li><a href="/expenses">Shopping Trips</a></li>
+          <li><a href="/debt">Debt Listings</a></li>
+          <li><a href="/pricecomp">Price Comparison</a></li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to current_user.username, user_path(current_user.id) %> <%= link_to "(Sign Out)", destroy_user_session_path, :method => :delete %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path %> (<%= link_to "Register", new_user_registration_path %>)
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </header>
+    
+    <div id="container">
+      <div id="main-content">
+        <!-- Flash messages (apparently required by Devise) -->
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+    
+        <!-- This will be filled in by individual pages -->
+        <%= yield %>
+      </div>
     </div>
-    <!-- <div id="header-bar"></div> -->
-    <div id="header-ul-wrapper">
-      <ul id="header-ul">
-        <li><a href="/expenses">Expenses</a></li>
-        <li><a href="/debt">Debt Listings</a></li>
-        <li><a href="/pricecomp">Price Comparison</a></li>
-        <li>
-          <% if user_signed_in? %>
-            <%= link_to current_user.username, user_path(current_user.id) %> <%= link_to "(Sign Out)", destroy_user_session_path, :method => :delete %>
-          <% else %>
-            <%= link_to "Login", new_user_session_path %> (<%= link_to "Register", new_user_registration_path %>)
-          <% end %>
-        </li>
+    
+    <footer>
+      <!-- <div id="footer-bar"></div> -->
+      <ul id="footer-ul">
+        <li class="footer-li" id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
+        <li>&copy; The D2S team [watch out; D2S also stands for Down to Sue]</li>
+        <li><a href="/about">About</a></li>
+      <!-- <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
+        <li class="footer-li"><a href="/about"><span class="footer-overline">About</span></a></li> -->
       </ul>
-    </div>
-  </header>
-  
-  <div id="container">
-    <div id="main-content">
-      <!-- Flash messages (apparently required by Devise) -->
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-  
-      <!-- This will be filled in by individual pages -->
-      <%= yield %>
-    </div>
+    </footer>
   </div>
-  
-  <footer>
-    <!-- <div id="footer-bar"></div> -->
-    <ul id="footer-ul">
-      <li class="footer-li" id="bananafy-button"><a href="#"><span class="stay-black">Banana-fy this page!</span></a></li>
-      <li>&copy; The D2S team [watch out; D2S also stands for Down to Sue]</li>
-      <li><a href="/about">About</a></li>
-	  <!-- <li class="footer-li-big"><span class="footer-overline">&copy; The D2S team [watch out; D2S also stands for Down to Sue]</span></li>
-      <li class="footer-li"><a href="/about"><span class="footer-overline">About</span></a></li> -->
-    </ul>
-  </footer>
 </body>
 </html>

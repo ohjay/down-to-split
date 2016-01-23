@@ -1,16 +1,16 @@
-This is the expenses page!<br>
-
 <% @user = current_user %>
 <% if user_signed_in? %>
 
 	<h2>New Shopping Trip:</h2>
-	<%= form_for :vendor, :url => trip_path(@user) do |e| %>
-		Vendor: <%= e.text_field :vendor_name %><br />
-		<%= fields_for :purchase do |u| %>
-			Date: <%= date_field(:purchase, :date_purchased) %>
+	<div id="shopping_trip_form">
+		<%= form_for :vendor, :url => trip_path(@user) do |e| %>
+			Vendor: <%= e.text_field :vendor_name %><br />
+			<%= fields_for :purchase do |u| %>
+				Date: <%= date_field(:purchase, :date_purchased) %>
+			<% end %>
+			<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
 		<% end %>
-		<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
-	<% end %>
+	</div>
 
 	<hr>
 	(search) Vendor:
