@@ -1,14 +1,26 @@
-This is the expenses page!<br>
-
 <% @user = current_user %>
 <% if user_signed_in? %>
   <h2>New Shopping Trip:</h2>
-  <%= form_for :vendor, :url => trip_path(@user) do |e| %>
-    Vendor: <%= e.text_field :vendor_name %><br />
-    <%= fields_for :purchase do |u| %>
+  <%= form_for :vendor, :url => trip_path(@user) do |f| %>
+    Vendor: <%= text_field(:vendor, :vendor_name) %><br />
+    
+    <%= fields_for :purchase do |p| %>
       Date: <%= date_field(:purchase, :date_purchased) %>
     <% end %>
-    <div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
+    
+    <br><br>
+    <div id="pform-list">
+      <form id="usearch-form" method="get" action="">
+        <div class="participant-input">
+          Participant: <input id="usearch-box" name="qu" type="text" autocomplete="off" /><br>
+        </div>
+      </form>
+    </div>
+    <input type="submit" value='Add participant' id="add-participant" name="addpa"></input>
+    <span id="pform-error"><br></span>
+    <br>
+    
+    <div class="submit"><%= f.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
   <% end %>
 
   <hr>
@@ -47,3 +59,6 @@ This is the expenses page!<br>
     </div>
   </div>
 <% end %>
+
+<%= javascript_include_tag('vendor_search.js') %>
+<%= javascript_include_tag('participants.js') %>

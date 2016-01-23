@@ -9,6 +9,8 @@ class PagesController < ApplicationController
   
   def expenses
     @purchase = Purchase.new
+    @users = User.new
+    
     @totals = Hash.new(0)
     @totals[:food] = 0
     @totals[:household] = 0
@@ -17,6 +19,7 @@ class PagesController < ApplicationController
     @totals[:travel] = 0
     @totals[:clothing] = 0
     @totals[:total] = 0
+    
     @user = current_user
     if user_signed_in?
       @user.expenses.each do |e|
@@ -81,27 +84,31 @@ class PagesController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @product = Product.create! product_params
-    @product.save
+    if params[:addpa].present?
+      render :action => :new
+    else
+      @user = current_user
+      @product = Product.create! product_params
+      @product.save
 
-    @purchase = @product.purchases.create! purchase_params
-    @purchase.date_purchased = params[:date]
-    @purchase.save
+      @purchase = @product.purchases.create! purchase_params
+      @purchase.date_purchased = params[:date]
+      @purchase.save
 
-    @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
-    @shopping_trip.purchases << @purchase
-    @shopping_trip.save
-    # session[:date] = nil
+      @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
+      @shopping_trip.purchases << @purchase
+      @shopping_trip.save
+      # session[:date] = nil
 
-    # @expense = Expense.new
-    # @expense.user_id = current_user.id
-    # @purchase.expenses << @expense
+      # @expense = Expense.new
+      # @expense.user_id = current_user.id
+      # @purchase.expenses << @expense
 
-    @user.purchases << @purchase
-    @user.save
+      @user.purchases << @purchase
+      @user.save
 
-    redirect_to expenses_path
+      redirect_to expenses_path
+    end
   end
 
   private
