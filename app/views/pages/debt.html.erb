@@ -4,7 +4,7 @@ This is the debt page! Sounds fun, right?<br>
 	<span>Your debts:</span>
 	<ul>
 	  <% current_user.purchases.each do |p| %>
-	    <li class="default-li">Cost: <%= p.cost %> owed to...</li>
+	    <li class="default-li">You owe <%= p.cost %> to...</li>
 	  <% end %>
 	</ul>
 <% else %>
