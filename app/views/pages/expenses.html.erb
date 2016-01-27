@@ -12,15 +12,15 @@
   <span id="pform-error"><br></span>
   <br>
   
-  <%= form_for :vendor, :url => trip_path(@user) do |f| %>
-    Vendor: <%= f.text_field :vendor_name %><br />
-    
-    <%= fields_for :purchase do |p| %>
-      Date: <%= date_field(:purchase, :date_purchased) %>
-    <% end %>
-    
-    <div class="submit"><%= f.submit "Add Shopping Trip", class: 'btn btn-primary btn-lg' %></div>
-  <% end %>
+	<div id="shopping_trip_form">
+		<%= form_for :vendor, :url => trip_path(@user) do |e| %>
+			Vendor: <%= e.text_field :vendor_name %><br />
+			<%= fields_for :purchase do |u| %>
+				Date: <%= date_field(:purchase, :date_purchased) %>
+			<% end %>
+			<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
+		<% end %>
+	</div>
 
   <hr>
   (search) Vendor:

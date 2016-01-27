@@ -37,12 +37,14 @@ class PagesController < ApplicationController
     @user = current_user
     if user_signed_in?
       @user.expenses.each do |e|
-        debtor = User.find(ShoppingTrip.find(e.purchase.shopping_trip_id).user_id)
-        cost = e.percentage * e.purchase.cost
-        if @debts.has_key?(debtor)
-          @debts[debtor] += cost
-        else
-          @debts[debtor] = cost
+        if ShoppingTrip.(e.purchase.shopping_trip.id).exists?
+          debtor = User.find(ShoppingTrip.find(e.purchase.shopping_trip).user_id)
+          cost = e.percentage * e.purchase.cost
+          if @debts.has_key?(debtor)
+            @debts[debtor] += cost
+          else
+            @debts[debtor] = cost
+          end
         end
       end
     end
