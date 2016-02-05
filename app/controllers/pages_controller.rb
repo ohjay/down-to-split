@@ -124,4 +124,7 @@ class PagesController < ApplicationController
   def purchase_params
     params.require(:purchase).permit(:cost, :category) if params[:purchase]
   end
+  
+  def terms_of_service
+  end
 end

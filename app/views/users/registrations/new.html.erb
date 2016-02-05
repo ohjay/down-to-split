@@ -2,10 +2,10 @@
   <h2>Register</h2>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-    <%= f.text_field :username, :autofocus => true, :placeholder => 'Username' %>
-    <%= f.email_field :email, :placeholder => 'Email address' %>
-    <%= f.password_field :password, :placeholder => 'Password' %>
-    <%= f.password_field :password_confirmation, :placeholder => 'Password confirmation' %>
+    <%= f.text_field :username, :autofocus => true, :placeholder => 'Username', :size => 25 %>
+    <%= f.email_field :email, :placeholder => 'Email address', :size => 25 %>
+    <%= f.password_field :password, :placeholder => 'Password', :size => 25 %>
+    <%= f.password_field :password_confirmation, :placeholder => 'Password confirmation', :size => 25 %>
     <%= f.submit "Register", class: 'btn btn-primary' %>
   <% end %>
   <%= render "devise/shared/links" %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   get 'expenses', to: 'pages#expenses'
   get 'debt', to: 'pages#debt'
+  get 'tos', to: 'pages#terms_of_service'
   get 'pricecomp', to: 'pages#pricecomp'
   get 'about', to: 'pages#about'
   get "new", to: "pages#new", as: "new"
