@@ -1,6 +1,8 @@
-Down to Split
-===
-Down to Split (D2S) is a Rails web application that helps people manage their finances. Users can track the purchases they make, compare expenses to a weekly budget, split costs with their friends, and find the lowest price for an item at nearby stores.
+![alt text](app/assets/images/logo.png)
+
+`Owen Jow, Sagang Wee, Kavi Mehta`
+
+A web application that helps people manage their finances. Users can track the purchases they make, compare expenses to a weekly budget, split costs with their friends, and find the lowest price for an item at nearby stores.
 
 
 Setup (for new devs!)
