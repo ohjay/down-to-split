@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   def expenses
     @purchase = Purchase.new
     @users = User.new
+    @vendor = Vendor.new
+    @shopping_trip = ShoppingTrip.new
     
     @totals = Hash.new(0)
     @totals[:food] = 0
@@ -59,16 +61,28 @@ class PagesController < ApplicationController
   def new
     @product = Product.new
     @purchase = @product.build_purchase
+    @vendor = Vendor.new
+    @vendor.shopping_trip.build
+    @shopping_trip = ShoppingTrip.new
+    3.times do
+      @shopping_trip.purchases.build
+    end
+    @purchases = @shopping_trip.purchases.build
+    
   end
 
   def trip
     @vendor = Vendor.new
+    @vendor.shopping_trip.build
     @shopping_trip = ShoppingTrip.new
+    
+    @purchases = @shopping_trip.purchases.build
+    
   end
 
   def create_trip
     @user = current_user
-    @vendor = Vendor.create vendor_params
+    @vendor = Vendor.create! vendor_params
     @vendor.save
     @shopping_trip = ShoppingTrip.create!
     @vendor.shopping_trips << @shopping_trip
@@ -115,8 +129,14 @@ class PagesController < ApplicationController
 
   private
 
+  def shopping_trip_params
+    params.require(:shopping_trip).permit(:name, users_attributes: [:id, :username, :_destroy])
+  end
+
   def vendor_params 
-    params.require(:vendor).permit(:vendor_name) if params[:vendor]
+    params.require(:vendor).permit(
+      :vendor_name,
+      shopping_trips_attributes: [:id, :name, :_destroy, purchases_attributes: [:id, :category, :_destroy] ]) if params[:vendor]
   end
 
   def product_params
