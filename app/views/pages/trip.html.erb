@@ -1,10 +1,31 @@
+<% @product = Product.new %>
+<% @purchase = Purchase.new %>
+<% @users = params[:users] %>
 <h3>Enter a new purchase:</h3>
-<%= form_for :product, :url => create_path(:date => params[:date_purchased], :shopping_trip => params[:shopping_trip]) do |f| %>
-	Product: <%= f.text_field :product_name %><br />
-	<%= fields_for :purchase do |u| %>
-		Cost: <span id="cost"><%= u.text_field :cost %></span><br />
-	  Category:
-	    <%= u.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
+<%= simple_form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip], :users => params[:users]) do |f| %>
+	<%= f.input :product_name, required: false %>
+
+	<%= simple_fields_for @purchase do |p| %>
+	    
+	    <%= p.input :cost, required: false %>
+
+	    <%= p.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']], required: false %>
+
+	    <%= p.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: @users).order(:username), include_blank: false %>
+
 	<% end %>
-	<div class="submit"><%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %></div>
+
+	<%= f.simple_fields_for :purchases do |purchase| %>
+
+		<p class="fields">
+			<%= render 'purchase_fields', :f => purchase %>
+		</p>
+
+	<% end %>
+
+	<div class='links'>
+      <%= link_to_add_association 'Add purchase', f, :purchases, render_options: {locals: { users: params[:users] }} %>
+    </div>
+
+	<div class="submit"><%= f.button :submit, "Add purchase", class: 'btn btn-primary btn-lg' %></div>
 <% end %>

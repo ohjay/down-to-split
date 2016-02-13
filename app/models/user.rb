@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :purchases, :through => :expenses
   has_and_belongs_to_many :shopping_trips
 
-  accepts_nested_attributes_for :purchases, :expenses, :shopping_trips
+  accepts_nested_attributes_for :purchases, :expenses, :shopping_trips, :allow_destroy => true
          
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
         where(username: conditions[:username]).first
       end
     end
+  end
+
+  def self.all_except(user)
+    where.not(id: user)
   end
   
   # Make sure there's no conflict between username and email

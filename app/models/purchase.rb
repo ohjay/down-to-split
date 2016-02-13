@@ -6,4 +6,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :shopping_trip
   delegate :product_name, :to => :product, allow_nil: true
   accepts_nested_attributes_for :users, :expenses
+
+  def self.weeks_purchases
+	where(:date_purchased => Date.today.beginning_of_week..Date.today.end_of_week)
+  end
 end

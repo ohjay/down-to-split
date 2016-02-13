@@ -1,0 +1,5 @@
+<%= f.simple_fields_for :shopping_trip do |shopping_trip| %>
+    <p class="fields">
+        <%= render 'shopping_trip_fields', :locals => { :f => shopping_trip } %>
+    </p>
+<% end %>

@@ -9,5 +9,13 @@
 
 <span>Your weekly budget: <%= number_to_currency(@user.weekly_budget) %></span><br>
 
+Weekly expenditures: <%= number_to_currency @total_spent %><br>
+<% if @total_spent > @user.weekly_budget %>
+	You have exceeded your weekly budget by: <%= number_to_currency(@total_spent - @user.weekly_budget) %>
+<% else %>
+	Remaining budget: <%= number_to_currency(@user.weekly_budget - @total_spent) %>
+<% end %>
+
+
 <p></p>
 <p id="edit_link"><%= link_to 'Edit your information', edit_user_path(@user) %></p>
