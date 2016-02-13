@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121071040) do
+ActiveRecord::Schema.define(version: 20160212231044) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160121071040) do
     t.string   "name"
     t.integer  "vendor_id"
     t.integer  "user_id"
+    t.string   "payer"
   end
 
   add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id"
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160121071040) do
     t.datetime "updated_at",                          null: false
     t.string   "username"
     t.decimal  "weekly_budget"
+    t.integer  "shopping_trip_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

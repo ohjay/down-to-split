@@ -1,0 +1,13 @@
+<div class="nested-fields">
+
+  <p class="fields">
+	Participants: <br />
+	<%= f.text_field :category %><br />
+  </p>
+  <%= f.fields_for :purchases do |purchase| %>
+		<p class="fields">
+			<%= render 'purchase_fields', :f => purchase %>
+		</p>
+	<% end %> 
+
+</div>

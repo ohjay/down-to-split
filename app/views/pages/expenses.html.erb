@@ -1,26 +1,35 @@
 <% @user = current_user %>
 <% if user_signed_in? %>
   <h2>New Shopping Trip:</h2>
-  <div id="pform-list">
+  <!-- <div id="pform-list">
     <form id="usearch-form" method="get" action="">
       <div class="participant-input">
-        Participant: <input id="usearch-box" name="qu" type="text" autocomplete="off" /><br>
+        <input id="usearch-box" name="qu" type="text" autocomplete="off" placeholder="Participant Username" /><br>
       </div>
     </form>
   </div>
   <input type="submit" value='Add participant' id="add-participant" name="addpa"></input>
   <span id="pform-error"><br></span>
   <br>
-  
+ -->  
 	<div id="shopping_trip_form">
-		<%= form_for :vendor, :url => trip_path(@user) do |e| %>
-			Vendor: <%= e.text_field :vendor_name %><br />
-			<%= fields_for :purchase do |u| %>
-				Date: <%= date_field(:purchase, :date_purchased) %>
+		<%= simple_form_for @shopping_trip, :url => trip_path(@user) do |f| %>
+
+			<%= f.simple_fields_for :vendors do |vendor| %> 
+        <%= f.input :vendor_name, label: 'Vendor' %>
+      <% end %>
+      
+      <%= f.association :users, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false %>
+
+			<%= f.simple_fields_for :purchase do |u| %>
+				<%= u.input :date_purchased, label: 'Date Purchased', as: :date, html5: true %>
 			<% end %>
-			<div class="submit"><%= e.submit "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
+			<div class="submit">
+        <div class="submit"><%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
+      </div>
 		<% end %>
 	</div>
+
 
   <hr>
   (search) Vendor:
@@ -39,7 +48,7 @@
     <% @user.shopping_trips.each do |s| %>
       <tr>
         <td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
-      </tr>
+      </tr>       
     <% end %>
   </table>
   

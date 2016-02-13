@@ -15,7 +15,11 @@
 			<td><%= p.category %></td>
 			<td><%= p.product_name %></td>
 			<td><%= number_to_currency(p.cost) %></td>
-			
 		</tr>
+
+		<% end %>
+
+		<% @shopping_trip.users.each do |u| %>
+			<%= u.username %>
 		<% end %>
 	</table>

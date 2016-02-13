@@ -10,7 +10,6 @@ class PagesController < ApplicationController
   def expenses
     @purchase = Purchase.new
     @users = User.new
-    @vendor = Vendor.new
     @shopping_trip = ShoppingTrip.new
     
     @totals = Hash.new(0)
@@ -73,21 +72,30 @@ class PagesController < ApplicationController
 
   def trip
     @vendor = Vendor.new
-    @vendor.shopping_trip.build
-    @shopping_trip = ShoppingTrip.new
-    
-    @purchases = @shopping_trip.purchases.build
+    @users = User.all
+    # @vendor.shopping_trip.build
+    # @shopping_trip = ShoppingTrip.new
+    # @purchases = @shopping_trip.purchases.build
     
   end
 
   def create_trip
     @user = current_user
-    @vendor = Vendor.create! vendor_params
+    @vendor = Vendor.create!
+    @vendor.vendor_name = params[:shopping_trip][:vendor_name]
     @vendor.save
-    @shopping_trip = ShoppingTrip.create!
+    @shopping_trip = ShoppingTrip.create! shopping_trip_params
     @vendor.shopping_trips << @shopping_trip
     @vendor.save
-    @date = params[:purchase][:date_purchased]
+    @date = params[:date_purchased]
+
+    @users = params[:shopping_trip][:user_ids]
+    @users.each do |u|
+      if u.to_i > 0
+          User.find(u.to_i).shopping_trip_id = @shopping_trip.id
+          @shopping_trip.users << User.find(u.to_i)
+      end
+    end
 
     @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
     @shopping_trip.save
@@ -130,7 +138,7 @@ class PagesController < ApplicationController
   private
 
   def shopping_trip_params
-    params.require(:shopping_trip).permit(:name, users_attributes: [:id, :username, :_destroy])
+    params.require(:shopping_trip).permit(:name, users_attributes: [:id, :username, :_destroy], vendor_attributes: [:id, :vendor_name, :_destroy])
   end
 
   def vendor_params 
