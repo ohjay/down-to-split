@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213194759) do
+ActiveRecord::Schema.define(version: 20160213214144) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,12 +43,13 @@ ActiveRecord::Schema.define(version: 20160213194759) do
   add_index "purchases", ["shopping_trip_id"], name: "index_purchases_on_shopping_trip_id"
 
   create_table "shopping_trips", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "name"
     t.integer  "vendor_id"
     t.integer  "user_id"
     t.string   "payer"
+    t.float    "total",      default: 0.0
   end
 
   add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id"

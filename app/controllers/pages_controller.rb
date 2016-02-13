@@ -164,7 +164,7 @@ class PagesController < ApplicationController
       # @user.expenses.new(purchase: @purchase)
       # @user.save
       @purchase.save
-
+      @shopping_trip.total += @purchase.cost
       @shopping_trip.purchases << @purchase
       @shopping_trip.save
       # session[:date] = nil
@@ -185,6 +185,7 @@ class PagesController < ApplicationController
 
           @purchase = Purchase.new
           @purchase.cost = value[:cost]
+          @shopping_trip.total += @purchase.cost
           @purchase.category = value[:category]
           @purchase.date_purchased = params[:date]
           @purchase.shopping_trip_id = @shopping_trip.id
