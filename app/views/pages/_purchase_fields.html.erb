@@ -1,10 +1,13 @@
 <div class="nested-fields">
 
-	Product: <%= f.text_field :product_name %><br />
-	Cost: <span id="cost"><%= f.text_field :cost %></span><br />
+	<%= f.input :product_name %>
+	<%= f.input :cost %>
 
-  	Category:
-    <%= f.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
-   
+  	<%= f.input :category do %>
+    	<%= f.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
+   	<% end %>
+
+   	<%= f.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: users).order(:username), include_blank: false %>
+
 
 </div>

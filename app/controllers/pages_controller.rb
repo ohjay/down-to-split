@@ -115,7 +115,7 @@ class PagesController < ApplicationController
 
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
-    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip)
+    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip, :users => @users)
   end
 
   def shopping_trip
@@ -134,6 +134,18 @@ class PagesController < ApplicationController
 
       @purchase = @product.purchases.create! purchase_params
       @purchase.date_purchased = params[:date_purchased]
+      @splitters = params[:users]
+      @percentage = 100.0 / @splitters.length.to_f
+      @splitters.each do |splitter|
+        @expense = Expense.new
+        @expense.user_id = splitter.to_i
+        @expense.purchase_id = @purchase.id
+        @expense.percentage = @percentage
+        @expense.save
+      end
+
+      # @user.expenses.new(purchase: @purchase)
+      # @user.save
       @purchase.save
 
       @shopping_trip.purchases << @purchase
@@ -200,7 +212,10 @@ class PagesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:cost, :category) if params[:purchase]
+    params.require(:purchase).permit(
+      :cost, 
+      :category,
+      :user_ids => []) if params[:purchase]
   end
   
   def terms_of_service
