@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'trip/:id', to: 'pages#trip', as: "trip"
   post 'trip/:id', to: 'pages#create_trip'
   get 'shopping_trip/:id', to: 'pages#shopping_trip', as: "shopping_trip"
+  get 'copy', to: 'pages#copy', as: "copy"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,13 +1,12 @@
 <div class="nested-fields">
 
-  <p class="fields">
-	Participants: <br />
-	<%= f.text_field :category %><br />
-  </p>
-  <%= f.fields_for :purchases do |purchase| %>
-		<p class="fields">
-			<%= render 'purchase_fields', :f => purchase %>
-		</p>
-	<% end %> 
+	Product: <%= f.text_field :product_name %><br />
+	<%= fields_for :purchase do |u| %>
+		Cost: <span id="cost"><%= u.text_field :cost %></span><br />
+
+	  	Category:
+	    <%= u.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
+	<% end %>
+   
 
 </div>

@@ -11,6 +11,7 @@ class PagesController < ApplicationController
     @purchase = Purchase.new
     @users = User.new
     @shopping_trip = ShoppingTrip.new
+    @product = Product.new
     
     @totals = Hash.new(0)
     @totals[:food] = 0
@@ -50,6 +51,12 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def copy
+    @source = Product.find(params[:id])
+    @product = @source.dup
+    render 'new'
+  end
   
   def pricecomp
   end
@@ -73,6 +80,7 @@ class PagesController < ApplicationController
   def trip
     @vendor = Vendor.new
     @users = User.all
+    @product = Product.new
     # @vendor.shopping_trip.build
     # @shopping_trip = ShoppingTrip.new
     # @purchases = @shopping_trip.purchases.build
