@@ -19,10 +19,10 @@
         <%= f.input :vendor_name, label: 'Vendor' %>
       <% end %>
       
-      <%= f.association :users, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false %>
+      <%= f.association :users, as: :check_boxes, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false %>
 
 			<%= f.simple_fields_for :purchase do |u| %>
-				<%= u.input :date_purchased, label: 'Date Purchased', as: :date, html5: true %>
+				<%= u.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
 			<% end %>
 			<div class="submit">
         <div class="submit"><%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
