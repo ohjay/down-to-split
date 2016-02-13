@@ -1,6 +1,6 @@
 <% @product = Product.new %>
 <h3>Enter a new purchase:</h3>
-<%= form_for @product, :url => create_path(:date => params[:date_purchased], :shopping_trip => params[:shopping_trip]) do |f| %>
+<%= form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip]) do |f| %>
 	Product: <%= f.text_field :product_name %><br />
 
 	<%= fields_for :purchase do |p| %>
@@ -19,7 +19,7 @@
 	<% end %>
 
 	<div class='links'>
-      <%= link_to_add_association 'Add purchase', f, :purchases %>
+      <%= link_to_add_association 'Add purchase', f, :purchases, render_options: {locals: { :date_purchased => params[:date_purchased] }} %>
     </div>
 
 	<div class="submit"><%= f.submit "Add purchase", class: 'btn btn-primary btn-lg' %></div>

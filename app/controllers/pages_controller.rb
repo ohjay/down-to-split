@@ -92,10 +92,12 @@ class PagesController < ApplicationController
     @vendor = Vendor.create!
     @vendor.vendor_name = params[:shopping_trip][:vendor_name]
     @vendor.save
-    @shopping_trip = ShoppingTrip.create! shopping_trip_params
+    @shopping_trip = ShoppingTrip.new
+    @shopping_trip.save
+
     @vendor.shopping_trips << @shopping_trip
     @vendor.save
-    @date = params[:date_purchased]
+    @date = params[:shopping_trip][:purchase][:date_purchased]
 
     @users = params[:shopping_trip][:user_ids]
     @users.each do |u|
@@ -105,7 +107,12 @@ class PagesController < ApplicationController
       end
     end
 
-    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    if @date
+      @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    else
+      @shopping_trip.name = @vendor.vendor_name 
+    end
+
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
     redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip)
@@ -120,14 +127,15 @@ class PagesController < ApplicationController
       render :action => :new
     else
       @user = current_user
-      @product = Product.create! product_params
+      @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
+      @product = Product.new
+      @product.product_name = params[:product][:product_name]
       @product.save
 
       @purchase = @product.purchases.create! purchase_params
-      @purchase.date_purchased = params[:date]
+      @purchase.date_purchased = params[:date_purchased]
       @purchase.save
 
-      @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
       @shopping_trip.purchases << @purchase
       @shopping_trip.save
       # session[:date] = nil
@@ -139,6 +147,28 @@ class PagesController < ApplicationController
       @user.purchases << @purchase
       @user.save
 
+      if params[:product][:purchases_attributes]
+        @products = params[:product][:purchases_attributes]
+        @products.each do |key, value|
+          @product = Product.new
+          @product.product_name = value[:product_name]
+          @product.save
+
+          @purchase = Purchase.new
+          @purchase.cost = value[:cost]
+          @purchase.category = value[:category]
+          @purchase.date_purchased = params[:date]
+          @purchase.save
+          @product.purchases << @purchase
+          @product.save
+
+          @user.purchases << @purchase
+          @user.save
+          @shopping_trip.purchases << @purchase
+          @shopping_trip.save
+        end  
+      end
+
       redirect_to expenses_path
     end
   end
@@ -146,7 +176,15 @@ class PagesController < ApplicationController
   private
 
   def shopping_trip_params
-    params.require(:shopping_trip).permit(:name, users_attributes: [:id, :username, :_destroy], vendor_attributes: [:id, :vendor_name, :_destroy])
+    params.require(:shopping_trip).permit(
+      :name, 
+      :vendor_name,
+      :user_ids,
+      :date_purchased,
+      :purchase => [:date_purchased],
+      users_attributes: [:id, :username, :_destroy], 
+      vendor_attributes: [:id, :vendor_name, :_destroy],
+      purchase_attributes: [:id, :category, :date_purchased, :_destroy] )
   end
 
   def vendor_params 
@@ -156,7 +194,9 @@ class PagesController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:product_name) if params[:product]
+    params.require(:product).permit(
+      :product_name,
+      purchases_attributes: [:id, :product_name, :category, :cost, :_destroy]) if params[:product]
   end
 
   def purchase_params

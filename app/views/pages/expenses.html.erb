@@ -13,7 +13,7 @@
   <br>
  -->  
 	<div id="shopping_trip_form">
-		<%= simple_form_for @shopping_trip, :url => trip_path(@user) do |f| %>
+		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
 
 			<%= f.simple_fields_for :vendors do |vendor| %> 
         <%= f.input :vendor_name, label: 'Vendor' %>
@@ -21,12 +21,14 @@
       
       <%= f.association :users, as: :check_boxes, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false %>
 
-			<%= f.simple_fields_for :purchase do |u| %>
-				<%= u.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
+			<%= f.simple_fields_for :purchase do |p| %>
+				<%= p.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
 			<% end %>
+
 			<div class="submit">
         <div class="submit"><%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg' %></div>
       </div>
+
 		<% end %>
 	</div>
 
