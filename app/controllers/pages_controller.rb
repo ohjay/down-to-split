@@ -107,10 +107,9 @@ class PagesController < ApplicationController
     end
 
     if @date.blank?
-      @shopping_trip.name = @vendor.vendor_name 
-    else
-      @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+      @date = Date.today 
     end
+    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
 
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
