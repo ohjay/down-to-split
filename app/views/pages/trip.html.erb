@@ -9,9 +9,11 @@
 	    
 	    <%= p.input :cost, required: false %>
 
-	    <%= p.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']], required: false %>
+	    <%= f.input :category do %>
+	    	<%= p.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']], required: false %>
+	    <% end %>
 
-	    <%= p.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: @users).order(:username), include_blank: false %>
+	    <%= p.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: @users).order(:username), include_blank: false, include_hidden: false %>
 
 	<% end %>
 

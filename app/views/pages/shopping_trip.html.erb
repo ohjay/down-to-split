@@ -6,7 +6,7 @@
 			<th>Date</th>
 			<th>Category</th>
 			<th>Product</th>
-			<th>Cost</th>
+			<th>Total Cost</th>
 		</tr>
 
 		<% @shopping_trip.purchases.each do |p| %>
@@ -15,10 +15,6 @@
 			<td><%= p.category %></td>
 			<td><%= p.product_name %></td>
 			<td><%= number_to_currency(p.cost) %></td>
-			<td>
-				<% @expense = Expense.find_by(user_id: @user.id, purchase_id: p.id) %>
-				<%= number_to_percentage(@expense.percentage) %>
-			</td>
 		</tr>
 
 		<% end %>
