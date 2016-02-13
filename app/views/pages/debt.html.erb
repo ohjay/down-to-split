@@ -2,13 +2,19 @@
 	<span>Your debts:</span>
     <table class="table table-striped table-bordered table-condensed">
       <tr>
-        <th>Cost</th>
-        <th>Owed To</th>
       </tr>
       <% @debts.each do |key, value| %>
       <tr>
-        <td><%= number_to_currency(value) %></td>
-        <td><%= key %></td>  
+        <td>
+          <% if value > 0 %>
+            <%= key + " owes you" %>
+          <% else %>
+            <%= "You owe " + key %>
+          <% end %>
+        </td>
+        <td>
+          <%= number_to_currency(value) %>
+        </td>  
       </tr>
       <% end %>
     </table>

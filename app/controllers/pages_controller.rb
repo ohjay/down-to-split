@@ -24,12 +24,6 @@ class PagesController < ApplicationController
     
     @user = current_user
     if user_signed_in?
-      @user.expenses.each do |e|
-        category = e.purchase.category
-        #cost = e.percentage * e.purchase.cost
-        #@totals[category] += cost
-        #@totals[total] += cost
-      end
     end
   end
   
@@ -195,12 +189,28 @@ class PagesController < ApplicationController
           @purchase.date_purchased = params[:date]
           @purchase.shopping_trip_id = @shopping_trip.id
 
-          @splitters = value[:users]
+          @splitters = value[:user_ids]
           @splitters.push(@user.id)
-          @percentage = 100.0 / @splitters.length.to_f
-          @splitters.each do |splitter|
+          @percentage = 1.0 / @splitters.length.to_f
+          @splitters.each do |splitter_id|
+            @splitter = User.find(splitter_id)
+            @n_debt = @purchase.cost * @percentage
+            @p_debt = @purchase.cost * @percentage
+            if splitter_id != @user.id
+              if @splitter.debts.has_key?(@user.id)
+                @splitter.debts[@user.id] += @n_debt
+              else 
+                @splitter.debts[@user.id] = @n_debt
+              end
+              if @user.debts.has_key?(splitter_id)
+                @user.debts[splitter_id] += @p_debt
+              else
+                @user.debts[splitter_id] = @p_debt
+              end
+            end
+
             @expense = Expense.new
-            @expense.user_id = splitter.to_i
+            @expense.user_id = splitter_id.to_i
             @expense.purchase_id = @purchase.id
             @expense.percentage = @percentage
             @expense.save
@@ -245,6 +255,7 @@ class PagesController < ApplicationController
     params.require(:product).permit(
       :product_name,
       :users => [],
+      :user_ids => [],
       purchases_attributes: [:id, :product_name, :category, :cost, :_destroy]) if params[:product]
   end
 
