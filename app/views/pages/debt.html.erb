@@ -9,11 +9,17 @@
           <% if value > 0 %>
             <%= key + " owes you" %>
           <% else %>
-            <%= "You owe " + key %>
+            <% if key != current_user.username %>
+              <%= "You owe " + key %>
+            <% end %>
           <% end %>
         </td>
         <td>
-          <%= number_to_currency(value) %>
+          <% if value > 0 %>
+            <%= number_to_currency(value) %>
+          <% else %>
+            <%= number_to_currency(value * -1) %>
+          <% end %>
         </td>  
       </tr>
       <% end %>

@@ -1,4 +1,6 @@
 <div class="nested-fields">
+	<% @user = current_user %>
+	<% users.push(@user.id) %>
 
 	<%= f.input :product_name %>
 	<%= f.input :cost %>
