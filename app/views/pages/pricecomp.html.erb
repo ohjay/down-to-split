@@ -1,1 +1,18 @@
-This is the price comparison page!
+<% @user = current_user %>
+
+<table class="table table-striped table-bordered table-condensed">
+		<tr>
+			<th>Product</th>
+			<th>Cheapest Vendor</th>
+			<th>Cost</th>
+		</tr>
+
+		<% @cheapest_prices.each do |product_name, array| %>
+		<tr>
+			<td><%= product_name %></td>
+			<td><%= array[1] %></td>
+			<td><%= number_to_currency(array[0]) %></td>
+		</tr>
+		<% end %>
+
+</table>

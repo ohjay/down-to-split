@@ -3,7 +3,6 @@
 
 <table class="table table-striped table-bordered table-condensed">
 		<tr>
-			<th>Date</th>
 			<th>Category</th>
 			<th>Product</th>
 			<th>Cost</th>
@@ -11,19 +10,11 @@
 
 		<% @shopping_trip.purchases.each do |p| %>
 		<tr>
-			<td><%= p.date_purchased %></td>
 			<td><%= p.category %></td>
 			<td><%= p.product_name %></td>
 			<td><%= number_to_currency(p.cost) %></td>
-			<td>
-				<% @expense = Expense.find_by(user_id: @user.id, purchase_id: p.id) %>
-				<%= number_to_percentage(@expense.percentage) %>
-			</td>
 		</tr>
-
 		<% end %>
 
-		<% @shopping_trip.users.each do |u| %>
-			<%= u.username %>
-		<% end %>
-	</table>
+</table>
+<%= "Total: " + number_to_currency(@shopping_trip.total) %>

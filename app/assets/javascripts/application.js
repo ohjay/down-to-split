@@ -18,6 +18,7 @@
 //= require cocoon
 //= require nested_form_fields
 //= require jquery_nested_form
+//= require bootstrap-datepicker
 //= require_tree .
 
 function remove_fields(link) {

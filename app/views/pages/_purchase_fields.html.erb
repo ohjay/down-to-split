@@ -7,7 +7,7 @@
     	<%= f.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
    	<% end %>
 
-   	<%= f.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: users).order(:username), include_blank: false %>
+   	<%= f.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: users).order(:username), include_blank: false, include_hidden: false %>
 
 
 </div>
