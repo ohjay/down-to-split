@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213214144) do
+ActiveRecord::Schema.define(version: 20160214003049) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160213214144) do
     t.integer  "product_id"
     t.string   "category"
     t.integer  "shopping_trip_id"
+    t.integer  "vendor_id"
   end
 
   add_index "purchases", ["shopping_trip_id"], name: "index_purchases_on_shopping_trip_id"

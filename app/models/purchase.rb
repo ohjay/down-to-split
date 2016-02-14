@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :shopping_trip
   delegate :product_name, :to => :product, allow_nil: true
+  delegate :vendor_name, :to => :vendor, allow_nil: true
   accepts_nested_attributes_for :users, :expenses
 
   def self.weeks_purchases

@@ -58,6 +58,21 @@ class PagesController < ApplicationController
   end
   
   def pricecomp
+    @user = current_user
+    @cheapest_prices = {}
+    if user_signed_in?
+      @user.purchases.each do |p|
+        if @cheapest_prices.has_key?(p.product_name)
+          if p.cost
+            if p.cost < @cheapest_prices[p.product_name][0]
+              @cheapest_prices[p.product_name] = Array[p.cost, p.vendor_name]
+            end
+          end
+        else
+          @cheapest_prices[p.product_name] = Array[p.cost, p.vendor_name]
+        end
+      end
+    end
   end
   
   def about
@@ -113,7 +128,7 @@ class PagesController < ApplicationController
 
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
-    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip, :users => @users)
+    redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip, :users => @users, :vendor => @vendor)
   end
 
   def shopping_trip
@@ -126,9 +141,13 @@ class PagesController < ApplicationController
     else
       @user = current_user
       @shopping_trip = ShoppingTrip.find(params[:shopping_trip])
-      @product = Product.new
-      @product.product_name = params[:product][:product_name]
-      @product.save
+      @vendor = Vendor.find(params[:vendor])
+      @product = Product.where(product_name: params[:product][:product_name]).first
+      if @product.blank?
+        @product = Product.new
+        @product.product_name = params[:product][:product_name]
+        @product.save
+      end
 
       @purchase = @product.purchases.create! purchase_params
       @purchase.date_purchased = params[:date_purchased]
@@ -160,27 +179,25 @@ class PagesController < ApplicationController
         @expense.save
       end
 
-      # @user.expenses.new(purchase: @purchase)
-      # @user.save
+      # update attributes and save
       @purchase.save
       @shopping_trip.total += @purchase.cost
       @shopping_trip.purchases << @purchase
       @shopping_trip.save
-      # session[:date] = nil
-
-      # @expense = Expense.new
-      # @expense.user_id = current_user.id
-      # @purchase.expenses << @expense
-
+      @vendor.purchases << @purchase
+      @vendor.save
       @user.purchases << @purchase
       @user.save
 
       if params[:product][:purchases_attributes]
         @products = params[:product][:purchases_attributes]
         @products.each do |key, value|
-          @product = Product.new
-          @product.product_name = value[:product_name]
-          @product.save
+          @product = Product.where(product_name: value[:product_name]).first
+          if @product.blank?
+            @product = Product.new
+            @product.product_name = value[:product_name]
+            @product.save
+          end
 
           @purchase = Purchase.new
           @purchase.cost = value[:cost]
@@ -224,6 +241,8 @@ class PagesController < ApplicationController
           @user.save
           @shopping_trip.purchases << @purchase
           @shopping_trip.save
+          @vendor.purchases << @purchase
+          @vendor.save
         end  
       end
 

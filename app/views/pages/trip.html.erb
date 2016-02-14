@@ -2,7 +2,7 @@
 <% @purchase = Purchase.new %>
 <% @users = params[:users] %>
 <h3>Enter a new purchase:</h3>
-<%= simple_form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip], :users => params[:users]) do |f| %>
+<%= simple_form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip], :users => params[:users], :vendor => params[:vendor]) do |f| %>
 	<%= f.input :product_name, required: false %>
 
 	<%= simple_fields_for @purchase do |p| %>
