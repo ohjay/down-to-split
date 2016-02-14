@@ -13,9 +13,15 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @total_spent = 0 
+    @total_spent = 0.0
     @user.purchases.weeks_purchases.each do |p|
-      @total_spent += p.cost
+      @expense = Expense.find_by(user_id: @user.id, purchase_id: p.id)
+      if @expense
+        if @expense.percentage
+          @cost = @expense.percentage * p.cost
+          @total_spent += @cost
+        end
+      end
     end
   end
 
