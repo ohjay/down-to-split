@@ -116,8 +116,10 @@ class PagesController < ApplicationController
     @users = params[:shopping_trip][:user_ids]
     @users.each do |u|
       if u.to_i > 0
-          User.find(u.to_i).shopping_trip_id = @shopping_trip.id
-          @shopping_trip.users << User.find(u.to_i)
+          @splitter = User.find(u.to_i)
+          @splitter.shopping_trips << @shopping_trip
+          @splitter.save
+          @shopping_trip.users << @splitter
       end
     end
 
@@ -206,7 +208,11 @@ class PagesController < ApplicationController
           @purchase.date_purchased = params[:date]
           @purchase.shopping_trip_id = @shopping_trip.id
 
-          @splitters = value[:user_ids]
+          if value[:user_ids]
+            @splitters = value[:user_ids]
+          else
+            @splitters = []
+          end
           @splitters.push(@user.id)
           @percentage = 1.0 / @splitters.length.to_f
           @splitters.each do |splitter_id|
