@@ -119,7 +119,7 @@ class PagesController < ApplicationController
           @splitter = User.find(u.to_i)
           @splitter.shopping_trips << @shopping_trip
           @splitter.save
-          @shopping_trip.users << @splitter
+          # @shopping_trip.users << @splitter
       end
     end
 
@@ -130,6 +130,7 @@ class PagesController < ApplicationController
 
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
+    @user.save
     redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip, :users => @users, :vendor => @vendor)
   end
 

@@ -5,6 +5,7 @@
       </tr>
       <% @debts.each do |key, value| %>
       <tr>
+        <% if key != current_user.username %>
         <td>
           <% if value > 0 %>
             <%= key + " owes you" %>
@@ -21,6 +22,7 @@
             <%= number_to_currency(value * -1) %>
           <% end %>
         </td>  
+        <% end %>
       </tr>
       <% end %>
     </table>
