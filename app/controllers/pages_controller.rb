@@ -32,22 +32,7 @@ class PagesController < ApplicationController
     @debts = {}
     @user = current_user
     if user_signed_in?
-      # @user.purchases.each do |p|
-      #   @expenses = Expense.where(purchase_id: p.id)
-      #   @expenses.each do |e|
-      #     @splitter = User.find(e.user_id)
-      #     if @splitter.id != @user.id
-      #       if @debts.has_key?(@splitter)
-      #         @debts[debtor] += cost
-      #       else
-      #         @debts[debtor] = cost
-      #       end
-      #     end
-      #   end
-      @user.debts.each do |key, value|
-        @debtor = User.find(key).username
-        @debts[@debtor] = value
-      end
+        @debts = Debt.debt_owed(@user)
     end
   end
 
@@ -107,7 +92,7 @@ class PagesController < ApplicationController
     @vendor.vendor_name = params[:shopping_trip][:vendor_name]
     @vendor.save
     @shopping_trip = ShoppingTrip.new
-    @shopping_trip.save
+    @shopping_trip.save!
 
     @vendor.shopping_trips << @shopping_trip
     @vendor.save
@@ -116,8 +101,10 @@ class PagesController < ApplicationController
     @users = params[:shopping_trip][:user_ids]
     @users.each do |u|
       if u.to_i > 0
-          User.find(u.to_i).shopping_trip_id = @shopping_trip.id
-          @shopping_trip.users << User.find(u.to_i)
+          @splitter = User.find(u.to_i)
+          @splitter.shopping_trips << @shopping_trip
+          @splitter.save
+          # @shopping_trip.users << @splitter
       end
     end
 
@@ -128,6 +115,7 @@ class PagesController < ApplicationController
 
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
+    @user.save
     redirect_to trip_path(current_user.id, :date_purchased => @date, :shopping_trip => @shopping_trip, :users => @users, :vendor => @vendor)
   end
 
@@ -153,24 +141,39 @@ class PagesController < ApplicationController
       @purchase.date_purchased = params[:date_purchased]
       @purchase.shopping_trip_id = @shopping_trip.id
       @splitters = params[:users]
-      @splitters.push(@user.id)
       @percentage = 1.0 / @splitters.length.to_f
       @splitters.each do |splitter_id|
         @splitter = User.find(splitter_id)
-        @n_debt = @purchase.cost * @percentage
-        @p_debt = @purchase.cost * @percentage
-        if splitter_id != @user.id
-          if @splitter.debts.has_key?(@user.id)
-            @splitter.debts[@user.id] += @n_debt
-          else 
-            @splitter.debts[@user.id] = @n_debt
-          end
-          if @user.debts.has_key?(splitter_id)
-            @user.debts[splitter_id] += @p_debt
-          else
-            @user.debts[splitter_id] = @p_debt
-          end
+        @debt_cost = @purchase.cost * @percentage
+        if splitter_id != @user.id 
+          @debt = Debt.new
+          @debt.save
+          @debt.creditor = @user
+          @debt.debtor = @splitter
+          @debt.cost = @debt_cost
+          @debt.save
         end
+
+        # @n_debt = @purchase.cost * @percentage * -1
+        # @p_debt = @purchase.cost * @percentage
+        # if splitter_id != @user.id
+        #   if @splitter.debts.has_key?(@user.id)
+        #     @splitter.debts[@user.id] += @n_debt
+        #     puts 'penis has key', @splitter.username
+        #   else 
+        #     @splitter.debts[@user.id] = @n_debt
+        #     puts 'penis no has key', @splitter.username
+        #   end
+        #   if @user.debts.has_key?(splitter_id)
+        #     @user.debts[splitter_id] += @p_debt
+        #     puts 'penis has key', @splitter.username
+        #   else
+        #     @user.debts[splitter_id] = @p_debt
+        #     puts 'penis no has key', @splitter.username
+        #   end
+        #   @splitter.save
+        #   @user.save
+        # end
 
         @expense = Expense.new
         @expense.user_id = splitter_id.to_i
@@ -206,12 +209,15 @@ class PagesController < ApplicationController
           @purchase.date_purchased = params[:date]
           @purchase.shopping_trip_id = @shopping_trip.id
 
-          @splitters = value[:user_ids]
-          @splitters.push(@user.id)
+          if value[:user_ids]
+            @splitters = value[:user_ids]
+          else
+            @splitters = []
+          end
           @percentage = 1.0 / @splitters.length.to_f
           @splitters.each do |splitter_id|
             @splitter = User.find(splitter_id)
-            @n_debt = @purchase.cost * @percentage
+            @n_debt = @purchase.cost * @percentage * -1
             @p_debt = @purchase.cost * @percentage
             if splitter_id != @user.id
               if @splitter.debts.has_key?(@user.id)
@@ -224,6 +230,8 @@ class PagesController < ApplicationController
               else
                 @user.debts[splitter_id] = @p_debt
               end
+              @user.save
+              @splitter.save
             end
 
             @expense = Expense.new
