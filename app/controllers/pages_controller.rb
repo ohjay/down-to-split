@@ -217,21 +217,26 @@ class PagesController < ApplicationController
           @percentage = 1.0 / @splitters.length.to_f
           @splitters.each do |splitter_id|
             @splitter = User.find(splitter_id)
-            @n_debt = @purchase.cost * @percentage * -1
-            @p_debt = @purchase.cost * @percentage
+            @debt_cost = @purchase.cost * @percentage
             if splitter_id != @user.id
-              if @splitter.debts.has_key?(@user.id)
-                @splitter.debts[@user.id] += @n_debt
-              else 
-                @splitter.debts[@user.id] = @n_debt
-              end
-              if @user.debts.has_key?(splitter_id)
-                @user.debts[splitter_id] += @p_debt
-              else
-                @user.debts[splitter_id] = @p_debt
-              end
-              @user.save
-              @splitter.save
+              @debt = Debt.new
+              @debt.save
+              @debt.creditor = @user
+              @debt.debtor = @splitter
+              @debt.cost = @debt_cost
+              @debt.save
+              # if @splitter.debts.has_key?(@user.id)
+              #   @splitter.debts[@user.id] += @n_debt
+              # else 
+              #   @splitter.debts[@user.id] = @n_debt
+              # end
+              # if @user.debts.has_key?(splitter_id)
+              #   @user.debts[splitter_id] += @p_debt
+              # else
+              #   @user.debts[splitter_id] = @p_debt
+              # end
+              # @user.save
+              # @splitter.save
             end
 
             @expense = Expense.new
