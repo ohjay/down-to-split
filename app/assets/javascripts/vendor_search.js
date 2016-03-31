@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $("#vsearch-box").bind("keyup", function() {
-        var form = $("#vsearch-form");
+    $("#usearch-box").bind("keyup", function() {
+        var form = $("#usearch-form");
         var formData = form.serializeArray()[0]['value'];
         
         if (formData) {
@@ -9,14 +9,14 @@ $(document).ready(function() {
                 type: "GET",
                 data: {'q': formData },
                 success: function(response) {
-                    $("#vsearch-results").html(response);
+                    $("#usearch-results").html(response);
                 },
                 error: function(response) {
-                    $("#vsearch-results").html("AJAX error!");
+                    $("#usearch-results").html("AJAX error!");
                 },
             });
         } else {
-            $("#vsearch-results").html("No vendors found.");
+            $("#usearch-results").html("No users found.");
         }
     }); 
 });
