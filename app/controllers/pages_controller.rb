@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def live_search
-    @vendors = Vendor.where("vendor_name like ?", "%" + params[:q] + "%")
+    @userz = User.where("username like ?", "%" + params[:q] + "%")
     render :layout => false
   end
   
