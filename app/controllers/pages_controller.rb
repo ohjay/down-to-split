@@ -32,13 +32,7 @@ class PagesController < ApplicationController
     @debts = {}
     @user = current_user
     if user_signed_in?
-      @users = User.all
-      @users.each do |user|
-        if user != current_user
-          @debt = Debt.debt_owed(current_user, user)
-          @debts[user.username] = @debt
-        end
-      end
+        @debts = Debt.debt_owed(@user)
     end
   end
 
