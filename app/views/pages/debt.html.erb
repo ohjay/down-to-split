@@ -10,9 +10,7 @@
           <% if value > 0 %>
             <%= key + " owes you" %>
           <% else %>
-            <% if key != current_user.username %>
-              <%= "You owe " + key %>
-            <% end %>
+            <%= "You owe " + key %>
           <% end %>
         </td>
         <td>
