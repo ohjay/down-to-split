@@ -1,12 +1,12 @@
 class Debt < ActiveRecord::Base
 	belongs_to :creditor, :class_name => "User", :foreign_key => "creditor_id"
 	belongs_to :debtor, :class_name => "User", :foreign_key => "debtor_id"
+	delegate :name, :to => :shopping_trip, allow_nil: true
 
 	def self.debt_owed(user)
 		@owed = Hash.new
 
 		@credits = self.where(creditor: user)
-		puts 'penis credits: ', @credits
 		@credits.each do |credit|
 			if @owed.has_key?(credit.debtor.username)
             	@owed[credit.debtor.username] += credit.cost
@@ -16,7 +16,6 @@ class Debt < ActiveRecord::Base
 		end
 
 		@debts = self.where(debtor: user)
-		puts 'penis debts: ', @debts
 		@debts.each do |debt|
 			if @owed.has_key?(debt.creditor.username)
             	@owed[debt.creditor.username] -= debt.cost
@@ -24,7 +23,7 @@ class Debt < ActiveRecord::Base
             	@owed[debt.creditor.username] = -debt.cost
           	end
 		end
-		puts 'penis', @owed
 		return @owed
 	end
+
 end

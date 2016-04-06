@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-	<h2>Your debts:</h2>
+	<h2>Your Debt Summary:</h2>
     <table class="table table-striped table-bordered table-condensed">
       <tr>
       </tr>
@@ -15,13 +15,82 @@
         </td>
         <td>
           <% if value > 0 %>
-            <%= number_to_currency(value) %>
+            <a href="<%= debt_show_path(key) %>"><%= number_to_currency(value) %></a>
           <% else %>
-            <%= number_to_currency(value * -1) %>
+            <a href="<%= debt_show_path(key) %>"><%= number_to_currency(value * -1) %></a>
           <% end %>
         </td>  
         <% end %>
       </tr>
+      <% end %>
+    </table>
+
+  <h2>Your Active Debts</h2>
+    <table class="table table-striped table-bordered table-condensed">
+      <% @user_debts.each do |debt| %>
+        <tr>
+          <th>Shopping Trip</th>
+          <th>Date</th>
+          <th>User</th>
+          <th>Amount</th>
+        </tr>
+
+        <td>
+          <a href="<%= shopping_trip_path(debt.shopping_trip.id) %>"><%= debt.shopping_trip.name %></a>
+        </td>
+
+        <td>
+          <%= debt.shopping_trip.date %>
+        </td>
+
+        <td>
+          <%= debt.creditor.username %>
+        </td>
+
+        <td>
+          <%= debt.cost %>
+        </td>
+
+        <td>
+          <div class="debt_button">
+            <%= button_to "Edit", edit_debt_path(user: key), :class => "btn-success", :method => :patch %>
+          </div>
+        </td>
+
+      <% end %>
+    </table>
+
+  <h2>Your Active Credits</h2>
+    <table class="table table-striped table-bordered table-condensed">
+      <% @user_credits.each do |credit| %>
+        <tr>
+          <th>Shopping Trip</th>
+          <th>Date</th>
+          <th>User</th>
+          <th>Amount</th>
+        </tr>
+
+        <td>
+          <a href="<%= shopping_trip_path(credit.shopping_trip.id) %>"><%= credit.shopping_trip.name %></a>
+        </td>
+
+        <td>
+          <%= credit.shopping_trip.date %>
+        </td>
+
+        <td>
+          <%= credit.creditor.username %>
+        </td>
+
+        <td>
+          <%= credit.cost %>
+        </td>
+
+        <td>
+          <div class="debt_button">
+            <%= button_to "Edit", edit_debt_path(user: key), :class => "btn-success", :method => :patch %>
+          </div>
+        </td>
       <% end %>
     </table>
 <% else %>

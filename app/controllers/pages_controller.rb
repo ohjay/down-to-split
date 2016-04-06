@@ -34,6 +34,24 @@ class PagesController < ApplicationController
     if user_signed_in?
         @debts = Debt.debt_owed(@user)
     end
+    @user_debts = Debt.where(debtor: @user)
+    @user_credits = Debt.where(creditor: @user)
+  end
+
+  def debt_show
+    @user = User.find_by_username(params[:user])
+    # @debts = Debt.where('(creditor = ? AND debtor = ?) OR (creditor = ? AND debtor = ?)', @user, current_user, current_user, @user)
+  end
+
+  def edit_debt 
+    # @pokemon = Pokemon.find params[:id]
+    # @pokemon.health -= 10
+    # if @pokemon.health <= 0
+    #   @pokemon.destroy
+    # else
+    #   @pokemon.save
+    # end
+    redirect_to request.referrer
   end
 
   def copy
@@ -111,8 +129,9 @@ class PagesController < ApplicationController
     if @date.blank?
       @date = Date.today 
     end
-    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
-
+    # @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    @shopping_trip.name = @vendor.vendor_name
+    @shopping_trip.date = @date
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
     @user.save
@@ -152,6 +171,8 @@ class PagesController < ApplicationController
           @debt.debtor = @splitter
           @debt.cost = @debt_cost
           @debt.save
+          @shopping_trip.debts << @debt
+          @shopping_trip.save
         end
 
         # @n_debt = @purchase.cost * @percentage * -1
@@ -225,6 +246,8 @@ class PagesController < ApplicationController
               @debt.debtor = @splitter
               @debt.cost = @debt_cost
               @debt.save
+              @shopping_trip.debts << @debt
+              @shopping_trip.save
               # if @splitter.debts.has_key?(@user.id)
               #   @splitter.debts[@user.id] += @n_debt
               # else 

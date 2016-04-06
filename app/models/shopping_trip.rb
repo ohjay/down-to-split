@@ -7,4 +7,6 @@ class ShoppingTrip < ActiveRecord::Base
 	accepts_nested_attributes_for :vendor
 	delegate :vendor_name, :to => :vendor, allow_nil: true
 	attr_accessor :vendor_name
+	has_many :debts
+	accepts_nested_attributes_for :debt
 end
