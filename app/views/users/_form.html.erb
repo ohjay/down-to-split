@@ -1,38 +1,40 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="form">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field" id="edit_field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, class: 'form_input' %>
     </div>
+
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form_input' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form_input' %>
+    </div>
+
+    <div class="field" id="edit_field">
+      <%= f.label :weekly_budget %><br />
+      <%= f.text_field :weekly_budget, class: 'form_input' %>
+    </div>
+
+    <div class="submit">
+      <%= f.submit "Update", class: 'btn btn-success btn-lg btn-block' %>
+    </div>
+
   <% end %>
-
-  <div class="field" id="edit_field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field" id="edit_field">
-    <%= f.label :weekly_budget %><br />
-    <%= f.text_field :weekly_budget %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update", class: 'btn btn-success btn-lg' %>
-  </div>
-
-<% end %>
+</div>

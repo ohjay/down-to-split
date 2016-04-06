@@ -51,6 +51,7 @@ class PagesController < ApplicationController
     # else
     #   @pokemon.save
     # end
+    @debt = Debt.find(params[:id])
     redirect_to request.referrer
   end
 
@@ -91,6 +92,7 @@ class PagesController < ApplicationController
       @shopping_trip.purchases.build
     end
     @purchases = @shopping_trip.purchases.build
+    @debts = @shopping_trip.debts.build
     
   end
 
@@ -166,10 +168,10 @@ class PagesController < ApplicationController
         @debt_cost = @purchase.cost * @percentage
         if splitter_id != @user.id 
           @debt = Debt.new
-          @debt.save
           @debt.creditor = @user
           @debt.debtor = @splitter
           @debt.cost = @debt_cost
+          @debt.shopping_trip_id = @shopping_trip.id
           @debt.save
           @shopping_trip.debts << @debt
           @shopping_trip.save
@@ -241,10 +243,10 @@ class PagesController < ApplicationController
             @debt_cost = @purchase.cost * @percentage
             if splitter_id != @user.id
               @debt = Debt.new
-              @debt.save
               @debt.creditor = @user
               @debt.debtor = @splitter
               @debt.cost = @debt_cost
+              @debt.shopping_trip_id = @shopping_trip.id
               @debt.save
               @shopping_trip.debts << @debt
               @shopping_trip.save
@@ -288,12 +290,18 @@ class PagesController < ApplicationController
 
   private
 
+  def debt_params
+    params.require(:debt).permit(
+      :cost)
+  end
+
   def shopping_trip_params
     params.require(:shopping_trip).permit(
       :name, 
       :vendor_name,
       :user_ids,
       :date_purchased,
+      debts_attributes: [:id, :debtor_id, :creditor_id, :cost, :_destroy],
       :purchase => [:date_purchased],
       users_attributes: [:id, :username, :_destroy], 
       vendor_attributes: [:id, :vendor_name, :_destroy],

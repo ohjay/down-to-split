@@ -47,12 +47,14 @@
 
     <tr>
       <th>Vendor</th>
+      <th>Date</th>
       <th>Total</th>
     </tr>
 
     <% @user.shopping_trips.each do |s| %>
       <tr>
         <td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
+        <td><%= s.date %></td>
         <td><%= number_to_currency(s.total) %> </td>
       </tr>       
     <% end %>

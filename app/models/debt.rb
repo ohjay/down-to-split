@@ -1,7 +1,10 @@
 class Debt < ActiveRecord::Base
 	belongs_to :creditor, :class_name => "User", :foreign_key => "creditor_id"
 	belongs_to :debtor, :class_name => "User", :foreign_key => "debtor_id"
+	belongs_to :shopping_trip
 	delegate :name, :to => :shopping_trip, allow_nil: true
+	delegate :id, :to => :shopping_trip, allow_nil: true
+	delegate :date, :to => :shopping_trip, allow_nil: true
 
 	def self.debt_owed(user)
 		@owed = Hash.new
