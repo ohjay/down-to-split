@@ -11,15 +11,25 @@
   <span id="pform-error"><br></span>
   <br>
  -->  
-	<div class="form">
-    <h3 id="shopping_trip_header">Add a new Shopping Trip.</h2>
+	<div id="shopping_trip_form">
+    <hr>
+    <label class="control-label">Search for users</label>
+    <form id="usearch-form" method="get" action="">
+      <input id="usearch-box" name="q" type="text" autocomplete="off" />
+    </form>
+
+    <hr>
+    
 		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
+    
+      <div class="form-group check_boxes optional shopping_trip_users">
+        <label class="check_boxes optional control-label">Add Participants</label>
+        <div id="usearch-results">No users found.</div>
+      </div>
 
 			<%= f.simple_fields_for :vendors do |vendor| %> 
           <%= f.input :vendor_name, label: false, placeholder: 'Vendor', class: 'form_input' %>
       <% end %>
-      
-      <%= f.association :users, as: :check_boxes, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false, include_hidden: false %>
 
 			<%= f.simple_fields_for :purchase do |p| %>
 				<%= p.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
@@ -31,16 +41,8 @@
 
 		<% end %>
 	</div>
-
-
-  <hr>
-  (search) Vendor:
-  <form id="vsearch-form" method="get" action="">
-    <input id="vsearch-box" name="q" type="text" autocomplete="off" />
-  </form>
-
-  <div id="vsearch-results">No vendors found.</div>
-  <hr>
+  
+  <br />
 
   <h3>Your Shopping Trips:</h3>
   <table class="table table-striped table-bordered table-condensed table-hover" id="shopping_trip_table">

@@ -1,10 +1,16 @@
-<% if @vendors.nil? || @vendors.empty? %>
-  No vendors found.
+<% if @userz.nil? || @userz.empty? %>
+  No users found.
 <% else %>
-  Search results:
   <ul>
-    <% @vendors.each do |v| %>
-      <li class="default-li"><%= v.vendor_name %></li>
+    <% @userz.each do |u| %>
+      <% unless u == current_user %>
+        <span class="checkbox">
+          <label for="shopping_trip_user_ids_<%= u.id %>">
+              <input class="check_boxes optional" type="checkbox" value="<%= u.id %>" name="shopping_trip[user_ids][]" id="shopping_trip_user_ids_<%= u.id %>" />
+              <%= u.username %>
+          </label>
+        </span>
+      <% end %>
     <% end %>
   </ul>
 <% end %>
