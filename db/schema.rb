@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331015114) do
+ActiveRecord::Schema.define(version: 20160406022147) do
 
   create_table "debts", force: :cascade do |t|
     t.float    "cost"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "creditor_id"
     t.integer  "debtor_id"
+    t.integer  "shopping_trip_id"
   end
+
+  add_index "debts", ["shopping_trip_id"], name: "index_debts_on_shopping_trip_id"
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160331015114) do
     t.integer  "user_id"
     t.string   "payer"
     t.float    "total",      default: 0.0
+    t.date     "date"
   end
 
   add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id"

@@ -34,6 +34,27 @@ class PagesController < ApplicationController
     if user_signed_in?
         @debts = Debt.debt_owed(@user)
     end
+    @user_debts = Debt.where(debtor: @user)
+    @user_credits = Debt.where(creditor: @user)
+  end
+
+  def debt_show
+    @user = User.find_by_username(params[:user])
+    # @debts = Debt.where('(creditor = ? AND debtor = ?) OR (creditor = ? AND debtor = ?)', @user, current_user, current_user, @user)
+  end
+
+  def edit_debt 
+    # @pokemon = Pokemon.find params[:id]
+    # @pokemon.health -= 10
+    # if @pokemon.health <= 0
+    #   @pokemon.destroy
+    # else
+    #   @pokemon.save
+    # end
+    # @debt = Debt.find(params[:id])
+    # @debt.destroy!
+    Debt.delete(params[:id])
+    redirect_to request.referrer
   end
 
   def copy
@@ -73,6 +94,7 @@ class PagesController < ApplicationController
       @shopping_trip.purchases.build
     end
     @purchases = @shopping_trip.purchases.build
+    @debts = @shopping_trip.debts.build
     
   end
 
@@ -111,8 +133,9 @@ class PagesController < ApplicationController
     if @date.blank?
       @date = Date.today 
     end
-    @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
-
+    # @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
+    @shopping_trip.name = @vendor.vendor_name
+    @shopping_trip.date = @date
     @shopping_trip.save
     @user.shopping_trips << @shopping_trip
     @user.save
@@ -147,11 +170,13 @@ class PagesController < ApplicationController
         @debt_cost = @purchase.cost * @percentage
         if splitter_id != @user.id 
           @debt = Debt.new
-          @debt.save
           @debt.creditor = @user
           @debt.debtor = @splitter
           @debt.cost = @debt_cost
+          @debt.shopping_trip_id = @shopping_trip.id
           @debt.save
+          @shopping_trip.debts << @debt
+          @shopping_trip.save
         end
 
         # @n_debt = @purchase.cost * @percentage * -1
@@ -220,11 +245,13 @@ class PagesController < ApplicationController
             @debt_cost = @purchase.cost * @percentage
             if splitter_id != @user.id
               @debt = Debt.new
-              @debt.save
               @debt.creditor = @user
               @debt.debtor = @splitter
               @debt.cost = @debt_cost
+              @debt.shopping_trip_id = @shopping_trip.id
               @debt.save
+              @shopping_trip.debts << @debt
+              @shopping_trip.save
               # if @splitter.debts.has_key?(@user.id)
               #   @splitter.debts[@user.id] += @n_debt
               # else 
@@ -265,12 +292,18 @@ class PagesController < ApplicationController
 
   private
 
+  def debt_params
+    params.require(:debt).permit(
+      :cost)
+  end
+
   def shopping_trip_params
     params.require(:shopping_trip).permit(
       :name, 
       :vendor_name,
       :user_ids,
       :date_purchased,
+      debts_attributes: [:id, :debtor_id, :creditor_id, :cost, :_destroy],
       :purchase => [:date_purchased],
       users_attributes: [:id, :username, :_destroy], 
       vendor_attributes: [:id, :vendor_name, :_destroy],
