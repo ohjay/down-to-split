@@ -56,20 +56,18 @@
               </td>
       
               <td>
+                Hi
                 <div class="debt_button">
-                  <%= button_to "Edit", edit_debt_path(id: debt.id), :class => "btn btn-success btn-block", :method => :patch %>
-                </div>
-                <div class="close">X
+                  <%= button_to "Resolve", edit_debt_path(id: debt.id), :method => :delete, :class => "btn btn-danger btn-block" %>
                 </div>
               </td>
             </tr>
             <% @debt_count = 1 %>
         <% end %>
 
-        <% if @debt_count == 0 %>
-          Dayum you're debt free!
-        <% end %>
-
+      <% end %>
+      <% if @debt_count == 0 %>
+        Dayum you're debt free!
       <% end %>
     </table>
 
@@ -107,17 +105,16 @@
     
             <td>
               <div class="debt_button">
-                <%= button_to "Edit", edit_debt_path(id: credit.id), :class => "btn btn-success btn-block", :method => :patch %>
+                <%= button_to "Resolve", edit_debt_path(id: credit.id), :class => "btn btn-danger btn-block", :method => :delete %>
               </div>
             </td>
           </tr>
           <% @credit_count = 1 %>
         <% end %>
-
-        <% if @credit_count == 0 %>
-          No one owes you any money...
-        <% end %>
         
+      <% end %>
+      <% if @credit_count == 0 %>
+        No one owes you any money...
       <% end %>
     </table>
 

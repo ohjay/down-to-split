@@ -8,5 +8,5 @@ class ShoppingTrip < ActiveRecord::Base
 	delegate :vendor_name, :to => :vendor, allow_nil: true
 	attr_accessor :vendor_name
 	has_many :debts
-	accepts_nested_attributes_for :debts
+	accepts_nested_attributes_for :debts, allow_destroy: true
 end

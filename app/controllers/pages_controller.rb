@@ -51,7 +51,9 @@ class PagesController < ApplicationController
     # else
     #   @pokemon.save
     # end
-    @debt = Debt.find(params[:id])
+    # @debt = Debt.find(params[:id])
+    # @debt.destroy!
+    Debt.delete(params[:id])
     redirect_to request.referrer
   end
 

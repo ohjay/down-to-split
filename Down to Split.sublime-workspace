@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"shopp",
+				"shopping_trip_id"
+			],
+			[
+				"shop",
+				"shopping_trip_id"
+			],
+			[
+				"credit",
+				"credit"
+			],
+			[
+				"shopping",
+				"shopping_trip"
+			],
+			[
 				"margin",
 				"margin-bottom"
 			],
@@ -136,10 +156,6 @@
 				"getPossibleActions"
 			],
 			[
-				"mar",
-				"margin-top"
-			],
-			[
 				"fon",
 				"font-size"
 			],
@@ -160,10 +176,6 @@
 				"Participants"
 			],
 			[
-				"shopping",
-				"shopping_trip_id"
-			],
-			[
 				"sho",
 				"shopping_trip_id"
 			],
@@ -178,10 +190,6 @@
 			[
 				"produ",
 				"product_name"
-			],
-			[
-				"shopp",
-				"shopping_trip"
 			],
 			[
 				"ven",
@@ -506,14 +514,6 @@
 			[
 				"Array",
 				"ArrayList"
-			],
-			[
-				"fringe",
-				"fringeMax"
-			],
-			[
-				"hi",
-				"highestWeightedArray"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "app/controllers/pages_controller.rb",
 			"settings":
 			{
-				"buffer_size": 8573,
+				"buffer_size": 9609,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/pages/debt_show.html.erb",
+			"settings":
+			{
+				"buffer_size": 190,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,15 +539,23 @@
 			"file": "app/views/pages/debt.html.erb",
 			"settings":
 			{
-				"buffer_size": 1139,
+				"buffer_size": 3968,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Sagang/Documents/WDD/Lecture 8 Prototyping and JavaScript/hw6/jspractice.js",
+			"settings":
+			{
+				"buffer_size": 752,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "app/views/pages/expenses.html.erb",
 			"settings":
 			{
-				"buffer_size": 2448,
+				"buffer_size": 2598,
 				"line_ending": "Windows"
 			}
 		},
@@ -553,10 +569,7 @@
 			}
 		},
 		{
-			"contents": "What is JS?\n	A dynamic programming language that can be applied to an HTML document to create dynamic interactivity on websites. \n	Used to manipulate the DOM.\n\nDOM Document Object Model\n	tree of objects that JS sees and controls\n	HTML elements\n	content - text/img\n	CSS attributes\n\n// comments\nalert(\"alert\");\nconsole.log()\nvar age = 19;\n\nDOM manipulation\ndocument.getElementById();\ndocument.getElementByClassName();\ndocument.getElementByTagName();\n\nonlycoin.com\nrleonardi.com\ngyrosco.pe\n\n",
 			"file": "/C/Users/Sagang/Documents/WDD/Lecture 8 - JavaScript.js",
-			"file_size": 508,
-			"file_write_time": 131039466989308096,
 			"settings":
 			{
 				"buffer_size": 488,
@@ -575,7 +588,7 @@
 			"file": "app/assets/stylesheets/application.css.scss",
 			"settings":
 			{
-				"buffer_size": 4998,
+				"buffer_size": 5086,
 				"line_ending": "Windows"
 			}
 		},
@@ -623,7 +636,7 @@
 			"file": "app/models/debt.rb",
 			"settings":
 			{
-				"buffer_size": 860,
+				"buffer_size": 966,
 				"line_ending": "Unix"
 			}
 		},
@@ -632,6 +645,30 @@
 			"settings":
 			{
 				"buffer_size": 1494,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/controllers/pokemons_controller.rb",
+			"settings":
+			{
+				"buffer_size": 785,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/views/trainers/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 554,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 313,
 				"line_ending": "Windows"
 			}
 		},
@@ -695,7 +732,7 @@
 			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 2361,
+				"buffer_size": 2470,
 				"line_ending": "Windows"
 			}
 		},
@@ -712,6 +749,45 @@
 			"settings":
 			{
 				"buffer_size": 134,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 2318,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "db/migrate/20160331015048_add_creditor_id_to_debts.rb",
+			"settings":
+			{
+				"buffer_size": 122,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/shopping_trip.rb",
+			"settings":
+			{
+				"buffer_size": 422,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/users/_form.html.erb",
+			"settings":
+			{
+				"buffer_size": 1201,
 				"line_ending": "Windows"
 			}
 		}
@@ -764,6 +840,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Sagang/Documents/WDD/Lecture 8 Prototyping and JavaScript/hw6/grader.js",
+		"/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/views/trainers/_trainer.html.erb",
+		"/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/views/trainers/index.html.erb",
+		"/C/Users/Sagang/Documents/RoRD/rails-dev-box/fa15-lab6/app/controllers/users_controller.rb",
+		"/C/Users/Sagang/Documents/RoRD/rails-dev-box/fa15-lab6/app/controllers/pokemons_controller.rb",
 		"/C/Users/Sagang/Documents/WDD/hw5/question3.html",
 		"/C/Users/Sagang/Documents/WDD/hw5/question4.html",
 		"/C/Users/Sagang/Documents/WDD/hw5/question7.html",
@@ -886,12 +967,7 @@
 		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/public/css/hyde.css",
 		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/index.html",
 		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/_posts/2013-12-28-introducing-hyde.md",
-		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/_config.yml",
-		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/_includes/head.html",
-		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/_layouts/default.html",
-		"/C/Users/Sagang/Documents/website/sagangwee.github.io/_layouts/page.html",
-		"/C/Users/Sagang/Documents/down-to-split/Vagrantfile",
-		"/C/Users/Sagang/Documents/website/Vagrantfile"
+		"/C/Users/Sagang/Documents/website/vagrant-up-github-pages/www/sagangwee.github.io/_config.yml"
 	],
 	"find":
 	{
@@ -1096,7 +1172,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1104,15 +1180,15 @@
 					"file": "app/controllers/pages_controller.rb",
 					"settings":
 					{
-						"buffer_size": 8573,
+						"buffer_size": 9609,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6466,
-								6466
+								1283,
+								1283
 							]
 						],
 						"settings":
@@ -1122,25 +1198,51 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 11.0,
+						"translation.y": 2897.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/pages/debt.html.erb",
+					"file": "app/views/pages/debt_show.html.erb",
 					"settings":
 					{
-						"buffer_size": 1139,
+						"buffer_size": 190,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								157,
+								157
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/pages/debt.html.erb",
+					"settings":
+					{
+						"buffer_size": 3968,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1904,
+								1904
 							]
 						],
 						"settings":
@@ -1156,19 +1258,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/views/pages/expenses.html.erb",
+					"buffer": 3,
+					"file": "/C/Users/Sagang/Documents/WDD/Lecture 8 Prototyping and JavaScript/hw6/jspractice.js",
 					"settings":
 					{
-						"buffer_size": 2448,
+						"buffer_size": 752,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								756,
-								777
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/pages/expenses.html.erb",
+					"settings":
+					{
+						"buffer_size": 2598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1168,
+								1168
 							]
 						],
 						"settings":
@@ -1178,13 +1307,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 495.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "/C/Users/Sagang/Documents/WDD/Intro to UX Design by Shawn Park",
 					"settings":
 					{
@@ -1202,7 +1331,8 @@
 						"settings":
 						{
 							"auto_name": "Intro to UX Design by Shawn Park",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1211,7 +1341,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "/C/Users/Sagang/Documents/WDD/Lecture 8 - JavaScript.js",
 					"settings":
 					{
@@ -1237,7 +1367,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "/C/Users/Sagang/Documents/WDD/Lecture 8 Prototyping and JavaScript/handson7.js",
 					"settings":
 					{
@@ -1254,7 +1384,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 928.0,
@@ -1263,19 +1394,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "app/assets/stylesheets/application.css.scss",
 					"settings":
 					{
-						"buffer_size": 4998,
+						"buffer_size": 5086,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4790,
-								4790
+								4950,
+								4950
 							]
 						],
 						"settings":
@@ -1285,13 +1416,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3873.0,
+						"translation.y": 3670.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "/C/Users/Sagang/Documents/WDD/Lecture 2 - UI Design and Emphasis",
 					"settings":
 					{
@@ -1302,8 +1433,8 @@
 						"selection":
 						[
 							[
-								1069,
-								1069
+								819,
+								819
 							]
 						],
 						"settings":
@@ -1312,13 +1443,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 360.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "/C/Users/Sagang/Documents/WDD/Lecture 3 - CSS Box Model",
 					"settings":
 					{
@@ -1345,7 +1476,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "/C/Users/Sagang/Documents/WDD/Lecture 4 - CSS Centering and Properties",
 					"settings":
 					{
@@ -1366,13 +1497,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 180.0,
+						"translation.y": 2.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 1 and 2 - Ruby Syntax",
 					"settings":
 					{
@@ -1392,13 +1523,13 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1391.0,
+						"translation.y": 704.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 3 - Databases",
 					"settings":
 					{
@@ -1419,25 +1550,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 167.0,
+						"translation.y": 115.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "app/models/debt.rb",
 					"settings":
 					{
-						"buffer_size": 860,
+						"buffer_size": 966,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								119,
-								119
+								332,
+								332
 							]
 						],
 						"settings":
@@ -1451,7 +1582,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 5 - Grabbag Rails",
 					"settings":
 					{
@@ -1473,13 +1604,92 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 471.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/controllers/pokemons_controller.rb",
+					"settings":
+					{
+						"buffer_size": 785,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								308,
+								308
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 17,
+					"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/app/views/trainers/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								394
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "/C/Users/Sagang/Documents/RoRD/rails-dev-box/proj1/config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								312,
+								312
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 4 - Index, Show, New, Create",
 					"settings":
 					{
@@ -1505,7 +1715,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 20,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 6 - Model Associations",
 					"settings":
 					{
@@ -1531,7 +1741,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 21,
 					"file": "db/migrate/20160330225813_rename_debt_column.rb",
 					"settings":
 					{
@@ -1557,7 +1767,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 22,
 					"file": "app/models/purchase.rb",
 					"settings":
 					{
@@ -1568,8 +1778,8 @@
 						"selection":
 						[
 							[
-								480,
-								480
+								319,
+								319
 							]
 						],
 						"settings":
@@ -1585,7 +1795,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 23,
 					"file": "app/models/user.rb",
 					"settings":
 					{
@@ -1613,7 +1823,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 24,
 					"file": "/C/Users/Sagang/Documents/RoRD/Lecture 9 - Joins and Heroku",
 					"settings":
 					{
@@ -1639,7 +1849,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 25,
 					"file": "app/views/pages/_purchase_fields.html.erb",
 					"settings":
 					{
@@ -1656,7 +1866,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1665,19 +1876,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 26,
 					"file": "app/views/layouts/application.html.erb",
 					"settings":
 					{
-						"buffer_size": 2361,
+						"buffer_size": 2470,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1381,
-								1381
+								499,
+								499
 							]
 						],
 						"settings":
@@ -1687,13 +1898,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 27,
 					"file": "app/views/pages/trip.html.erb",
 					"settings":
 					{
@@ -1704,8 +1915,8 @@
 						"selection":
 						[
 							[
-								188,
-								188
+								1151,
+								1151
 							]
 						],
 						"settings":
@@ -1720,7 +1931,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 28,
 					"file": "app/views/users/edit.html.erb",
 					"settings":
 					{
@@ -1738,6 +1949,140 @@
 						"settings":
 						{
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 2318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								701,
+								701
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "db/migrate/20160331015048_add_creditor_id_to_debts.rb",
+					"settings":
+					{
+						"buffer_size": 122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 32,
+					"file": "app/models/shopping_trip.rb",
+					"settings":
+					{
+						"buffer_size": 422,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								417,
+								417
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 33,
+					"file": "app/views/users/_form.html.erb",
+					"settings":
+					{
+						"buffer_size": 1201,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								661,
+								661
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
