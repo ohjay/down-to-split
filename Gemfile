@@ -38,7 +38,7 @@ gem 'nested_form_fields'
 gem "nested_form"
 gem 'bootstrap-datepicker-rails'
 gem 'libv8'
-
+gem 'puma'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
