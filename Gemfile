@@ -6,7 +6,7 @@ ruby '2.2.4'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 # gem 'activerecord-jdbcpostgresql-adapter'
-# gem 'rails_12factor', group: :production
+gem 'rails_12factor', group: :production
 
 gem 'pg'
 # Use SCSS for stylesheets
