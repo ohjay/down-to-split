@@ -4,13 +4,13 @@
 <% @user = current_user %>
 <% @users.push(@user.id) %>
 <div class="form">
-	<h3>Add a new purchase.</h3>
+	<h3>Add a new item.</h3>
 	<%= simple_form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip], :users => params[:users], :vendor => params[:vendor]) do |f| %>
-		<%= f.input :product_name, required: false %>
+		<%= f.input :product_name, required: false, :maxlength => 30 %>
 
 		<%= simple_fields_for @purchase do |p| %>
 		    
-		    <%= p.input :cost, required: false %>
+		    <%= p.input :cost, required: false, :maxlength => 10 %>
 
 		    <%= f.input :category do %>
 		    	<%= p.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']], required: false %>
@@ -29,9 +29,9 @@
 		<% end %>
 
 		<div class='links'>
-	      <%= link_to_add_association 'Add purchase', f, :purchases, render_options: {locals: { users: params[:users] }} %>
+	      <%= link_to_add_association 'Add item', f, :purchases, render_options: {locals: { users: params[:users] }} %>
 	    </div>
 
-		<div class="submit"><%= f.button :submit, "Add purchase(s)", class: 'btn btn-primary btn-lg btn-block' %></div>
+		<div class="submit"><%= f.button :submit, "Add item(s)", class: 'btn btn-primary btn-lg btn-block' %></div>
 	<% end %>
 </div>

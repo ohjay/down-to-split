@@ -16,7 +16,7 @@
 		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
 
 			<%= f.simple_fields_for :vendors do |vendor| %> 
-          <%= f.input :vendor_name, label: false, placeholder: 'Vendor', class: 'form_input' %>
+          <%= f.input :vendor_name, label: false, placeholder: 'Vendor', class: 'form_input', :maxlength => 30 %>
       <% end %>
       
       <%= f.association :users, as: :check_boxes, label: 'Add Participants', label_method: :username, collection: User.all_except(@user).order(:username), include_blank: false, include_hidden: false %>
@@ -43,22 +43,26 @@
   <hr>
 
   <h3>Your Shopping Trips:</h3>
-  <table class="table table-striped table-bordered table-condensed table-hover" id="shopping_trip_table">
+  <% if @user.shopping_trips.count == 0 %>
+    You have no shopping trips!
+  <% else %>
+    <table class="table table-striped table-bordered table-condensed table-hover" id="shopping_trip_table">
 
-    <tr>
-      <th>Vendor</th>
-      <th>Date</th>
-      <th>Total</th>
-    </tr>
-
-    <% @user.shopping_trips.each do |s| %>
       <tr>
-        <td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
-        <td><%= s.date %></td>
-        <td><%= number_to_currency(s.total) %> </td>
-      </tr>       
-    <% end %>
-  </table>
+        <th>Vendor</th>
+        <th>Date</th>
+        <th>Total</th>
+      </tr>
+
+      <% @user.shopping_trips.each do |s| %>
+        <tr>
+          <td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
+          <td><%= s.date %></td>
+          <td><%= number_to_currency(s.total) %> </td>
+        </tr>       
+      <% end %>
+    </table>
+  <% end %>
   
 <% else %>
   <div class="jumbotron">
