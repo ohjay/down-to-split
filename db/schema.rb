@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214003049) do
+ActiveRecord::Schema.define(version: 20160222185356) do
+
+  create_table "debts", force: :cascade do |t|
+    t.decimal  "owes"
+    t.boolean  "closed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "related_user_id"
+  end
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"

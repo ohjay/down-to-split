@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :shopping_trips
   store :debts
 
+
+  has_many :debt, :class_name => "Debt"
+  has_many :users, :through => :debt, :source => :user
+  has_many :inverse_debt, :class_name => "Debt", :foreign_key => "related_user_id"
+  has_many :inverse_users, :through => :inverse_debt, :source => :user
+
   accepts_nested_attributes_for :purchases, :expenses, :shopping_trips, :allow_destroy => true
          
   # Virtual attribute for authenticating by either username or email
