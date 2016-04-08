@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def live_search
-    @userz = User.where("username like ?", "%" + params[:q] + "%")
+    @vendors = Vendor.where("vendor_name like ?", "%" + params[:q] + "%")
     render :layout => false
   end
   
@@ -161,8 +161,10 @@ class PagesController < ApplicationController
       end
 
       @purchase = @product.purchases.create! purchase_params
+      @purchase.category = @purchase.category.to_s.titleize
       @purchase.date_purchased = params[:date_purchased]
       @purchase.shopping_trip_id = @shopping_trip.id
+      @purchase.save
       @splitters = params[:users]
       @percentage = 1.0 / @splitters.length.to_f
       @splitters.each do |splitter_id|
@@ -177,28 +179,9 @@ class PagesController < ApplicationController
           @debt.save
           @shopping_trip.debts << @debt
           @shopping_trip.save
+          @purchase.debts << @debt
+          @purchase.save
         end
-
-        # @n_debt = @purchase.cost * @percentage * -1
-        # @p_debt = @purchase.cost * @percentage
-        # if splitter_id != @user.id
-        #   if @splitter.debts.has_key?(@user.id)
-        #     @splitter.debts[@user.id] += @n_debt
-        #     puts 'penis has key', @splitter.username
-        #   else 
-        #     @splitter.debts[@user.id] = @n_debt
-        #     puts 'penis no has key', @splitter.username
-        #   end
-        #   if @user.debts.has_key?(splitter_id)
-        #     @user.debts[splitter_id] += @p_debt
-        #     puts 'penis has key', @splitter.username
-        #   else
-        #     @user.debts[splitter_id] = @p_debt
-        #     puts 'penis no has key', @splitter.username
-        #   end
-        #   @splitter.save
-        #   @user.save
-        # end
 
         @expense = Expense.new
         @expense.user_id = splitter_id.to_i
@@ -230,9 +213,10 @@ class PagesController < ApplicationController
           @purchase = Purchase.new
           @purchase.cost = value[:cost]
           @shopping_trip.total += @purchase.cost
-          @purchase.category = value[:category]
+          @purchase.category = value[:category].to_s.titleize
           @purchase.date_purchased = params[:date]
           @purchase.shopping_trip_id = @shopping_trip.id
+          @purchase.save
 
           if value[:user_ids]
             @splitters = value[:user_ids]
@@ -252,6 +236,8 @@ class PagesController < ApplicationController
               @debt.save
               @shopping_trip.debts << @debt
               @shopping_trip.save
+              @purchase.debts << @debt
+              @purchase.save
               # if @splitter.debts.has_key?(@user.id)
               #   @splitter.debts[@user.id] += @n_debt
               # else 
@@ -334,3 +320,4 @@ class PagesController < ApplicationController
   def terms_of_service
   end
 end
+
