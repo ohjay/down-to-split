@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
+ruby '2.2.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+# Use postgresql as the database for Active Record
+gem 'activerecord-jdbcpostgresql-adapter'
+gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -33,6 +38,7 @@ gem 'simple_form'
 gem 'nested_form_fields'
 gem "nested_form"
 gem 'bootstrap-datepicker-rails'
+gem 'libv8'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,7 +51,7 @@ gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
