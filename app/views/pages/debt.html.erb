@@ -32,6 +32,7 @@
           <% if @debt_init == 0 %>
             <tr>
               <th>Shopping Trip</th>
+              <th>Purchase</th>
               <th>Date</th>
               <th>User</th>
               <th>Amount</th>
@@ -41,6 +42,10 @@
             <tr>
               <td>
                 <a href="<%= shopping_trip_path(debt.shopping_trip.id) %>"><%= debt.shopping_trip.name %></a>
+              </td>
+
+              <td>
+                <%= debt.purchase.product_name %>
               </td>
       
               <td>
@@ -80,6 +85,7 @@
           <% if @credit_init == 0 %>
             <tr>
               <th>Shopping Trip</th>
+              <th>Purchase</th>
               <th>Date</th>
               <th>User</th>
               <th>Amount</th>
@@ -90,7 +96,11 @@
             <td>
               <a href="<%= shopping_trip_path(credit.shopping_trip.id) %>"><%= credit.shopping_trip.name %></a>
             </td>
-    
+
+            <td>
+                <%= credit.purchase.product_name %>
+            </td>
+
             <td>
               <%= credit.shopping_trip.date %>
             </td>

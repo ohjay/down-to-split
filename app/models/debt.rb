@@ -4,7 +4,8 @@ class Debt < ActiveRecord::Base
 	belongs_to :shopping_trip
 	delegate :name, :to => :shopping_trip, allow_nil: true
 	delegate :date, :to => :shopping_trip, allow_nil: true
-
+	belongs_to :purchase
+	
 	def self.debt_owed(user)
 		@owed = Hash.new
 
