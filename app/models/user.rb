@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_many :expenses, :class_name => 'Expense'
   has_many :purchases, :through => :expenses
   has_and_belongs_to_many :shopping_trips
-  store :debts
+  has_many :debts
+  accepts_nested_attributes_for :debts, allow_destroy: true
 
 
   has_many :debt, :class_name => "Debt"

@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   post 'trip/:id', to: 'pages#create_trip'
   get 'shopping_trip/:id', to: 'pages#shopping_trip', as: "shopping_trip"
   get 'copy', to: 'pages#copy', as: "copy"
-  
+  delete "edit_debt/:id", to: "pages#edit_debt", as: "edit_debt"
+  get 'debt_show/:user', to: 'pages#debt_show', as: "debt_show"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

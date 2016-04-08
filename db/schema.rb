@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160222185356) do
 
   create_table "debts", force: :cascade do |t|
@@ -21,6 +22,20 @@ ActiveRecord::Schema.define(version: 20160222185356) do
     t.integer  "user_id"
     t.integer  "related_user_id"
   end
+=======
+ActiveRecord::Schema.define(version: 20160406022147) do
+
+  create_table "debts", force: :cascade do |t|
+    t.float    "cost"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "creditor_id"
+    t.integer  "debtor_id"
+    t.integer  "shopping_trip_id"
+  end
+
+  add_index "debts", ["shopping_trip_id"], name: "index_debts_on_shopping_trip_id"
+>>>>>>> 08638b86e6c38a0c35909d12406b095bebffb8aa
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160222185356) do
     t.integer  "user_id"
     t.string   "payer"
     t.float    "total",      default: 0.0
+    t.date     "date"
   end
 
   add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id"
@@ -89,6 +105,8 @@ ActiveRecord::Schema.define(version: 20160222185356) do
     t.decimal  "weekly_budget"
     t.integer  "shopping_trip_id"
     t.text     "debts"
+    t.integer  "creditor_id"
+    t.integer  "debtor_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

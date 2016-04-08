@@ -1,13 +1,17 @@
 <div class="nested-fields">
-
-	<%= f.input :product_name %>
-	<%= f.input :cost %>
-
-  	<%= f.input :category do %>
-    	<%= f.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
-   	<% end %>
-
-   	<%= f.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: users).order(:username), include_blank: false, include_hidden: false %>
+	<div class="form">
+		<% @user = current_user %>
+		<% users.push(@user.id) %>
+	
+		<%= f.input :product_name, class: 'form_input' %>
+		<%= f.input :cost, class: 'form_input' %>
+	
+	  	<%= f.input :category do %>
+	    	<%= f.select :category, [['N/A', 'N/A'],['Food','food'],['Household','household'],['Entertainment','entertainment'],['Education','education'],['Travel','travel'],['Clothing','clothing']] %>
+	   	<% end %>
+	
+	   	<%= f.association :users, as: :check_boxes, label: 'Splitters', label_method: :username, collection: User.where(id: users).order(:username), include_blank: false, include_hidden: false %>
+	</div>
 
 
 </div>
