@@ -2,7 +2,9 @@
 <% @purchase = Purchase.new %>
 <% @users = params[:users] %>
 <% @user = current_user %>
-<% @users.push(@user.id) %>
+<% if @users %>
+	<% @users.push(@user.id) %>
+<% end %>
 <div class="form">
 	<h3>Add a new item.</h3>
 	<%= simple_form_for @product, :url => create_path(:date_purchased => params[:date_purchased], :shopping_trip => params[:shopping_trip], :users => params[:users], :vendor => params[:vendor]) do |f| %>

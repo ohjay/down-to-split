@@ -121,12 +121,14 @@ class PagesController < ApplicationController
     @date = params[:shopping_trip][:purchase][:date_purchased]
 
     @users = params[:shopping_trip][:user_ids]
-    @users.each do |u|
-      if u.to_i > 0
-          @splitter = User.find(u.to_i)
-          @splitter.shopping_trips << @shopping_trip
-          @splitter.save
-          # @shopping_trip.users << @splitter
+    if @users
+      @users.each do |u|
+        if u.to_i > 0
+            @splitter = User.find(u.to_i)
+            @splitter.shopping_trips << @shopping_trip
+            @splitter.save
+            # @shopping_trip.users << @splitter
+        end
       end
     end
 
@@ -320,4 +322,3 @@ class PagesController < ApplicationController
   def terms_of_service
   end
 end
-
