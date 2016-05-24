@@ -58,7 +58,7 @@ License
 ---
 The project is distributed under the terms of the [Apache License](LICENSE).
 
-> Copyright 2016 Owen Jow
+> Copyright 2016 Sagang Wee, Kavi Mehta, Owen Jow
 >
 > Licensed under the Apache License, Version 2.0 (the "License");
 > you may not use this file except in compliance with the License.

@@ -11,6 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160222185356) do
+
+  create_table "debts", force: :cascade do |t|
+    t.decimal  "owes"
+    t.boolean  "closed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "related_user_id"
+  end
+=======
 ActiveRecord::Schema.define(version: 20160406022147) do
 
   create_table "debts", force: :cascade do |t|
@@ -23,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160406022147) do
   end
 
   add_index "debts", ["shopping_trip_id"], name: "index_debts_on_shopping_trip_id"
+>>>>>>> 08638b86e6c38a0c35909d12406b095bebffb8aa
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
