@@ -264,4 +264,5 @@ Devise.setup do |config|
   config.scoped_views = true
   config.reset_password_keys = [ :username ]
   config.confirmation_keys = [ :username ]
+  config.secret_key = '67c71100950781f18747a5b253fbfd8ae7ed85ff21a4ef1bb6c6b1f510d66e66d9c439bac383811a217f565707a0d999dffacdff1518c7d81d886498f7175906'
 end

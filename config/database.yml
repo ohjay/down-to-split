@@ -29,6 +29,7 @@ default: &default
   pool: 5
 
 development:
+  <<: *default
   database: db/development
 
 # Warning: The database defined as "test" will be erased and
