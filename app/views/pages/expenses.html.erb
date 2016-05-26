@@ -10,10 +10,25 @@
   <input type="submit" value='Add participant' id="add-participant" name="addpa"></input>
   <span id="pform-error"><br></span>
   <br>
- -->  
-	<div class="form">
+ --> 
+
+	<div class="form" id="shopping_trip_form">
     <h3 id="shopping_trip_header">Add a new Shopping Trip.</h2>
+
+    <!-- <hr>
+    <label class="control-label">Search for users</label>
+    <form id="usearch-form" method="get" action="">
+      <input id="usearch-box" name="q" type="text" autocomplete="off" />
+    </form>
+
+    <hr> -->
+    
 		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
+
+      <!-- <div class="form-group check_boxes optional shopping_trip_users">
+        <label class="check_boxes optional control-label">Add Participants</label>
+        <div id="usearch-results">No users found.</div>
+      </div> -->
 
 			<%= f.simple_fields_for :vendors do |vendor| %> 
           <%= f.input :vendor_name, label: false, placeholder: 'Vendor', class: 'form_input', :maxlength => 30 %>
