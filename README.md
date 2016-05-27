@@ -13,7 +13,7 @@ You will need Ruby 2.2+, Ruby on Rails 4.2.0, and SQLite 3.
 
 To install RVM and Ruby 2.2:
 ```
-\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.0
+\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.4
 ```
 
 To install Rails 4.2.0:
@@ -38,7 +38,7 @@ bundle install
 ```
 
 ### Database Initialization
-Create and seed the database:
+If you don't have it already, you'll need to install Postgres (yes, the actual application!). Download the appropriate package [here](https://www.postgresql.org/), then follow the steps below in order to create and seed the database:
 ```ruby
 rake db:create
 rake db:migrate
@@ -46,12 +46,14 @@ rake db:seed
 ```
 
 ### Running the Application
-Start the server:
+Make sure that Postgres is running on port 5432. Usually, this is as simple as launching the Postgres app that you installed [in the previous section](#database-initialization). On OS X, you should see a little elephant pop up in the status bar if the launch is successful.
+
+Once that's done, you'll want to start the server:
 ```ruby
-rails s # uses the default Rails port (3000?)
+rails s # uses the default Rails port (3000)
 ```
 
-At this point, you should be able to open the website by visiting [localhost:3000](http://127.0.0.1:3000/) in your browser.
+At this point, you should be able to open the website by visiting [localhost:3000](http://127.0.0.1:3000/) in your browser. Congratulations!
 
 
 License
