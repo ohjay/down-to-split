@@ -1,4 +1,4 @@
-<% if @userz.nil? || @userz.empty? %>
+<% if @userz.nil? || @userz.empty? || (@userz.size == 1 && @userz.first == current_user) %>
   No users found.
 <% else %>
   <ul>
