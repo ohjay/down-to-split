@@ -12,21 +12,20 @@ class Debt < ActiveRecord::Base
 		@credits = self.where(creditor: user)
 		@credits.each do |credit|
 			if @owed.has_key?(credit.debtor.username)
-            	@owed[credit.debtor.username] += credit.cost
-          	else 
-            	@owed[credit.debtor.username] = credit.cost
-          	end
+        @owed[credit.debtor.username] += credit.cost
+      else
+        @owed[credit.debtor.username] = credit.cost
+      end
 		end
 
 		@debts = self.where(debtor: user)
 		@debts.each do |debt|
 			if @owed.has_key?(debt.creditor.username)
-            	@owed[debt.creditor.username] -= debt.cost
-          	else 
-            	@owed[debt.creditor.username] = -debt.cost
-          	end
+        @owed[debt.creditor.username] -= debt.cost
+      else 
+        @owed[debt.creditor.username] = -debt.cost
+      end
 		end
 		return @owed
 	end
-
 end
