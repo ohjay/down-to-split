@@ -28,23 +28,22 @@
          <div id="usearch-results">No users found.</div>
        </div>
 
- 			<%= f.simple_fields_for :vendors do |vendor| %> 
-           <%= f.input :vendor_name, label: false, placeholder: 'Vendor', class: 'form_input' %>
-       <% end %>
+ 			<%= f.simple_fields_for :vendors do |vendor| %>
+        <%= f.input :vendor_name, required: true, label: false, placeholder: 'Vendor', class: 'form_input' %>
+      <% end %>
 
  			<%= f.simple_fields_for :purchase do |p| %>
  				<%= p.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
  			<% end %>
 
  			<div class="submit">
-         <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
-       </div>
-
- 		<% end %>
- 	</div>
+        <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
+      </div>
+    <% end %>
+  </div>
   
-   <br />
-   <hr />
+  <br />
+  <hr />
 
   <h3>Your Shopping Trips:</h3>
   <% if @user.shopping_trips.count == 0 %>
@@ -86,4 +85,3 @@
 
 <%= javascript_include_tag('vendor_search.js') %>
 <%= javascript_include_tag('participants.js') %>
-
