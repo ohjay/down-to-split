@@ -53,7 +53,7 @@ Once that's done, you'll want to start the server:
 rails s # uses the default Rails port (3000)
 ```
 
-At this point, you should be able to open the website by visiting [localhost:3000](http://127.0.0.1:3000/) in your browser. Congratulations!
+At this point, you should be able to open the website by visiting [localhost:3000](http://localhost:3000/) in your browser. Congratulations!
 
 
 License
