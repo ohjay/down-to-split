@@ -19,12 +19,4 @@ $(document).ready(function() {
             $("#usearch-results").html("No users found.");
         }
     }); 
-    
-    $(".check_boxes").change(function() {
-        if ($(this).is(':checked')) {
-            // Add user to "checked" list
-        } else {
-            // Remove user from "checked" list if he/she is on it
-        }
-    });
 });

@@ -43,7 +43,7 @@ class PagesController < ApplicationController
     # @debts = Debt.where('(creditor = ? AND debtor = ?) OR (creditor = ? AND debtor = ?)', @user, current_user, current_user, @user)
   end
 
-  def edit_debt 
+  def edit_debt
     # @pokemon = Pokemon.find params[:id]
     # @pokemon.health -= 10
     # if @pokemon.health <= 0
@@ -95,17 +95,12 @@ class PagesController < ApplicationController
     end
     @purchases = @shopping_trip.purchases.build
     @debts = @shopping_trip.debts.build
-    
   end
 
   def trip
     @vendor = Vendor.new
     @users = User.all
     @product = Product.new
-    # @vendor.shopping_trip.build
-    # @shopping_trip = ShoppingTrip.new
-    # @purchases = @shopping_trip.purchases.build
-    
   end
 
   def create_trip
@@ -124,16 +119,15 @@ class PagesController < ApplicationController
     if @users
       @users.each do |u|
         if u.to_i > 0
-            @splitter = User.find(u.to_i)
-            @splitter.shopping_trips << @shopping_trip
-            @splitter.save
-            # @shopping_trip.users << @splitter
+          @splitter = User.find(u.to_i)
+          @splitter.shopping_trips << @shopping_trip
+          @splitter.save
         end
       end
     end
 
     if @date.blank?
-      @date = Date.today 
+      @date = Date.today
     end
     # @shopping_trip.name = @vendor.vendor_name + ' (' + @date.to_s + ')'
     @shopping_trip.name = @vendor.vendor_name
@@ -192,7 +186,7 @@ class PagesController < ApplicationController
         @expense.save
       end
 
-      # update attributes and save
+      # Update attributes and save
       @purchase.save
       @shopping_trip.total += @purchase.cost
       @shopping_trip.purchases << @purchase
@@ -240,18 +234,6 @@ class PagesController < ApplicationController
               @shopping_trip.save
               @purchase.debts << @debt
               @purchase.save
-              # if @splitter.debts.has_key?(@user.id)
-              #   @splitter.debts[@user.id] += @n_debt
-              # else 
-              #   @splitter.debts[@user.id] = @n_debt
-              # end
-              # if @user.debts.has_key?(splitter_id)
-              #   @user.debts[splitter_id] += @p_debt
-              # else
-              #   @user.debts[splitter_id] = @p_debt
-              # end
-              # @user.save
-              # @splitter.save
             end
 
             @expense = Expense.new

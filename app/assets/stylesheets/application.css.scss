@@ -15,6 +15,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face {
+  font-family: "CODE";
+  src: url(/assets/CODE.otf) format("truetype");
+}
+
 html, body, #container { 
     height: 100%; 
 }
@@ -34,10 +39,7 @@ body {
 
 body > #container {
     position: relative;
-    height: auto; 
-    // margin-bottom: 3em;
-    // flex-grow: 1;
-    // overflow: auto;
+    height: auto;
     min-height: 100%;
     padding: 0;
 }
@@ -139,7 +141,6 @@ li.default-li {
     list-style: none;
     padding: 0;
     margin: 0;
-    /*margin: 15px 0 5px 0;*/
 }
 
 #header-ul li {
@@ -282,4 +283,35 @@ li.default-li {
     display: block;
 }
 
+#shopping_trip_form {
+    padding: 2rem;
+    border: 3px solid #8AC007;
+    border-radius: 5px;
+    background: #D8E2E8;
+    margin: 0;
+    width: 40%;
+    float: left;
+}
 
+#shopping-trip-preview {
+    width: 60%;
+    padding: 2rem 2rem 2rem 4rem;
+    float: left;
+}
+
+#st-entry-container {
+    width: 100%;
+    margin: auto;
+}
+
+#clear {
+    clear: both;
+}
+
+.h3-reduced-margin {
+    margin-top: 0.3em;
+}
+
+#preview-vendor, #preview-date, #preview-parti-label {
+    font-family: "CODE";
+}

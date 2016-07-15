@@ -1,49 +1,62 @@
 <% @user = current_user %>
 <% if user_signed_in? %>
-   <!-- <div id="pform-list">
-     <form id="usearch-form" method="get" action="">
-       <div class="participant-input">
-         <input id="usearch-box" name="qu" type="text" autocomplete="off" placeholder="Participant Username" /><br>
-       </div>
-     </form>
-   </div>
-   <input type="submit" value='Add participant' id="add-participant" name="addpa"></input>
-   <span id="pform-error"><br></span>
-   <br>
-  -->  
- 	<div class="form" id="shopping_trip_form">
-     <h3 id="shopping_trip_header">Add a new Shopping Trip.</h3>
-     <hr>
-     <label class="control-label">Search for users</label>
-     <form id="usearch-form" method="get" action="">
-       <input id="usearch-box" name="q" type="text" autocomplete="off" />
-     </form>
+  <script type="text/javascript">participants = []; pids = [];</script>
+  <div id="st-entry-container">
+    <div class="form" id="shopping_trip_form">
+      <h3 id="shopping_trip_header" class="h3-reduced-margin">Enter a new shopping trip</h3>
+      <hr>
+      <label class="control-label">Search for users</label>
+      <form id="usearch-form" method="get" action="">
+        <input id="usearch-box" class="form-control" name="q" type="text" autocomplete="off" />
+      </form>
 
-     <hr>
+      <hr>
     
- 		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
-    
-       <div class="form-group check_boxes optional shopping_trip_users">
-         <label class="check_boxes optional control-label">Add Participants</label>
-         <div id="usearch-results">No users found.</div>
-       </div>
+   		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
+        <div class="form-group check_boxes optional shopping_trip_users">
+          <label class="optional control-label">Participants</label>
+          <div id="usearch-results">No users found.</div>
+        </div>
 
- 			<%= f.simple_fields_for :vendors do |vendor| %>
-        <%= f.input :vendor_name, required: true, label: false, placeholder: 'Vendor', class: 'form_input' %>
+   			<%= f.simple_fields_for :vendors do |vendor| %>
+          <%= f.input :vendor_name, required: true, label: false, placeholder: 'Vendor', class: 'form_input' %>
+        <% end %>
+
+   			<%= f.simple_fields_for :purchase do |p| %>
+   				<%= p.input :date_purchased, label: 'Expedition date', as: :date, required: false, html5: true %>
+   			<% end %>
+
+   			<div class="submit">
+          <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
+        </div>
       <% end %>
-
- 			<%= f.simple_fields_for :purchase do |p| %>
- 				<%= p.input :date_purchased, label: 'Date Purchased', as: :date, required: false, html5: true %>
- 			<% end %>
-
- 			<div class="submit">
-        <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
+      <script type="text/javascript">
+      $("#shopping_trip_form").submit(function() {
+        numOthers = pids.length;
+        for (var i = 0; i < numOthers; i++) {
+          $('#usearch-results').append('<input type="hidden" name="shopping_trip[user_ids][]" value="'
+              + pids[i] + '" />');
+        }
+      });
+      </script>
+    </div>
+  
+    <div id="shopping-trip-preview">
+      <h3 class="h3-reduced-margin">Preview</h3>
+      <hr>
+      <span id="preview-vendor">Untitled shopping trip</span><br>
+      <span id="preview-date"><%= Date.today %></span>
+      <br><br>
+      <span id="preview-parti-label"><u>Participants</u></span>
+      <div id="preview-participants">
+        You (<%= current_user.username %>)
       </div>
-    <% end %>
+    </div>
+    
+    <div id="clear"></div>
   </div>
   
-  <br />
-  <hr />
+  <br><hr>
 
   <h3>Your Shopping Trips:</h3>
   <% if @user.shopping_trips.count == 0 %>
@@ -62,7 +75,7 @@
           <td><a href="<%= shopping_trip_path(s.id) %>"><%= s.name %></a></td>
           <td><%= s.date %></td>
           <td><%= number_to_currency(s.total) %> </td>
-        </tr>       
+        </tr>
       <% end %>
     </table>
   <% end %>
