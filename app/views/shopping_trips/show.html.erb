@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shopping_trip.name %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @shopping_trip.vendor %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @shopping_trip.user %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @shopping_trip.total %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @shopping_trip.date %>
+</p>
+
+<%= link_to 'Edit', edit_shopping_trip_path(@shopping_trip) %> |
+<%= link_to 'Back', shopping_trips_path %>

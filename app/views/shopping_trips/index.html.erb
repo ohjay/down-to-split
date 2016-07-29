@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Shopping Trips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Vendor</th>
+      <th>User</th>
+      <th>Total</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shopping_trips.each do |shopping_trip| %>
+      <tr>
+        <td><%= shopping_trip.name %></td>
+        <td><%= shopping_trip.vendor %></td>
+        <td><%= shopping_trip.user %></td>
+        <td><%= shopping_trip.total %></td>
+        <td><%= shopping_trip.date %></td>
+        <td><%= link_to 'Show', shopping_trip %></td>
+        <td><%= link_to 'Edit', edit_shopping_trip_path(shopping_trip) %></td>
+        <td><%= link_to 'Destroy', shopping_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shopping trip', new_shopping_trip_path %>
