@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20160801175905) do
 
   create_table "debts", force: :cascade do |t|
     t.float    "cost"
-    t.integer  "creditor"
-    t.integer  "debtor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "creditor_id"
+    t.integer  "debtor_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "expenses", force: :cascade do |t|

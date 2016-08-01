@@ -4,7 +4,8 @@ class DebtsController < ApplicationController
   # GET /debts
   # GET /debts.json
   def index
-    @debts = Debt.all
+    @debts = Debt.where(debtor: @user)
+    @credits = Debt.where(creditor: @user)
   end
 
   # GET /debts/1
@@ -55,10 +56,7 @@ class DebtsController < ApplicationController
   # DELETE /debts/1.json
   def destroy
     @debt.destroy
-    respond_to do |format|
-      format.html { redirect_to debts_url, notice: 'Debt was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to request.referrer
   end
 
   private
