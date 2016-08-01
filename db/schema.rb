@@ -11,28 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408025917) do
+ActiveRecord::Schema.define(version: 20160801175905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "debts", force: :cascade do |t|
     t.float    "cost"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "creditor_id"
-    t.integer  "debtor_id"
-    t.integer  "shopping_trip_id"
-    t.integer  "purchase_id"
+    t.integer  "creditor"
+    t.integer  "debtor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "debts", ["purchase_id"], name: "index_debts_on_purchase_id", using: :btree
-  add_index "debts", ["shopping_trip_id"], name: "index_debts_on_shopping_trip_id", using: :btree
-
   create_table "expenses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "purchase_id"
     t.float    "percentage"
+    t.integer  "purchase_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -48,37 +43,28 @@ ActiveRecord::Schema.define(version: 20160408025917) do
 
   create_table "purchases", force: :cascade do |t|
     t.date     "date_purchased"
-    t.decimal  "cost",             precision: 10, scale: 2
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.decimal  "cost"
     t.integer  "product_id"
-    t.string   "category"
     t.integer  "shopping_trip_id"
-    t.integer  "vendor_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
+  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id", using: :btree
   add_index "purchases", ["shopping_trip_id"], name: "index_purchases_on_shopping_trip_id", using: :btree
 
   create_table "shopping_trips", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
     t.string   "name"
     t.integer  "vendor_id"
     t.integer  "user_id"
-    t.string   "payer"
-    t.float    "total",      default: 0.0
+    t.float    "total"
     t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_index "shopping_trips", ["user_id"], name: "index_shopping_trips_on_user_id", using: :btree
   add_index "shopping_trips", ["vendor_id"], name: "index_shopping_trips_on_vendor_id", using: :btree
-
-  create_table "shopping_trips_users", id: false, force: :cascade do |t|
-    t.integer "shopping_trip_id"
-    t.integer "user_id"
-  end
-
-  add_index "shopping_trips_users", ["shopping_trip_id"], name: "index_shopping_trips_users_on_shopping_trip_id", using: :btree
-  add_index "shopping_trips_users", ["user_id"], name: "index_shopping_trips_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -94,9 +80,6 @@ ActiveRecord::Schema.define(version: 20160408025917) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
-    t.decimal  "weekly_budget"
-    t.integer  "shopping_trip_id"
-    t.text     "debts"
     t.integer  "creditor_id"
     t.integer  "debtor_id"
   end
@@ -112,8 +95,10 @@ ActiveRecord::Schema.define(version: 20160408025917) do
     t.datetime "updated_at",  null: false
   end
 
-  add_foreign_key "debts", "purchases"
-  add_foreign_key "debts", "shopping_trips"
+  add_foreign_key "expenses", "purchases"
+  add_foreign_key "expenses", "users"
+  add_foreign_key "purchases", "products"
   add_foreign_key "purchases", "shopping_trips"
+  add_foreign_key "shopping_trips", "users"
   add_foreign_key "shopping_trips", "vendors"
 end

@@ -19,8 +19,7 @@
       <div id="header-ul-wrapper">
         <ul id="header-ul">
           <li><a href="/expenses">Shopping Trips</a></li>
-          <li><a href="/debt">Debt Listings</a></li>
-          <li><a href="/pricecomp">Price Comparison</a></li>
+          <li><a href="/debts">Debt Listings</a></li>
           <li>
             <% if user_signed_in? %>
               <%= link_to current_user.username, user_path(current_user.id) %> <%= link_to "(Sign Out)", destroy_user_session_path, :method => :delete %>
