@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cost: 1.5
+  creditor_id: 
+  debtor_id: 
+
+two:
+  cost: 1.5
+  creditor_id: 
+  debtor_id: 
