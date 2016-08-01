@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :users
 
   root 'home#index'
+  get 'about', to: 'home#about'
+  get 'terms_of_service', to: 'home#terms_of_service'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
