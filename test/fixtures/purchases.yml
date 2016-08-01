@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_purchased: 2016-08-01
+  cost: 9.99
+  product_id: 
+  shopping_trip_id: 
+
+two:
+  date_purchased: 2016-08-01
+  cost: 9.99
+  product_id: 
+  shopping_trip_id: 
