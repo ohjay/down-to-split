@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Date purchased</th>
       <th>Cost</th>
       <th>Product</th>
       <th>Shopping trip</th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.date_purchased %></td>
         <td><%= purchase.cost %></td>
         <td><%= purchase.product %></td>
         <td><%= purchase.shopping_trip %></td>
