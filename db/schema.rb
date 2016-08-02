@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160801175905) do
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.date     "date_purchased"
     t.decimal  "cost"
     t.integer  "product_id"
     t.integer  "shopping_trip_id"
