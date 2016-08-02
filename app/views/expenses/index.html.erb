@@ -16,7 +16,7 @@
         <td><%= expense.purchase.shopping_trip.date %></td>
         <td><%= expense.purchase.shopping_trip.vendor.vendor_name %></td>
         <td><%= expense.percentage * expense.purchase.cost %></td>
-        <td><%= expense.purchase.shopping_trip.user %></td>
+        <td><%= expense.purchase.shopping_trip.payer %></td>
       </tr>
     <% end %>
   </table>
