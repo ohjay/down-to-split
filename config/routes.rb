@@ -4,13 +4,7 @@ Rails.application.routes.draw do
 
   resources :expenses
 
-  resources :purchases
-
-  resources :products
-
   resources :shopping_trips
-
-  resources :vendors
 
   devise_for :users
   resources :users
