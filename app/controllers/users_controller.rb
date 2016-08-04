@@ -13,6 +13,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    if @user != current_user
+      render :text => '404 error, son. We couldn\'t find that page. :(<br>' \
+          + 'While you\'re here, why not check out <a href="https://youtu.be/Pr1YY_QSt74">' \
+          + 'Professor Oak\'s lecture on Ivysaur</a>?<br>#bulbasaurmasterrace', :status => '404'
+      return
+    end
     @total_spent = 0.0
     @user.purchases.weeks_purchases.each do |p|
       @expense = Expense.find_by(user_id: @user.id, purchase_id: p.id)

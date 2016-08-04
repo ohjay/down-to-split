@@ -19,7 +19,6 @@
 //= require nested_form_fields
 //= require jquery_nested_form
 //= require bootstrap-datepicker
-//= require_tree .
 
 function remove_fields(link) {
   $(link).previous("input[type=hidden]").value = "1"; // destroy record
