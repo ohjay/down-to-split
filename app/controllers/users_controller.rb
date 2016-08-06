@@ -19,16 +19,6 @@ class UsersController < ApplicationController
           + 'Professor Oak\'s lecture on Ivysaur</a>?<br>#bulbasaurmasterrace', :status => '404'
       return
     end
-    @total_spent = 0.0
-    @user.purchases.weeks_purchases.each do |p|
-      @expense = Expense.find_by(user_id: @user.id, purchase_id: p.id)
-      if @expense
-        if @expense.percentage
-          @cost = @expense.percentage * p.cost
-          @total_spent += @cost
-        end
-      end
-    end
   end
 
   # GET /users/new
