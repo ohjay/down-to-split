@@ -4,7 +4,7 @@ class ShoppingTripsController < ApplicationController
   # GET /shopping_trips
   # GET /shopping_trips.json
   def index
-    @shopping_trips = ShoppingTrip.all
+    @shopping_trips = ShoppingTrip.where(payer: @user)
   end
 
   # GET /shopping_trips/1

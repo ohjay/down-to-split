@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
 
-<h1>Listing Shopping Trips</h1>
+  <h3>Expenses</h3>
 
-<table>
-  <thead>
+  <table class="table table-striped table-bordered table-condensed" id="shopping_trip_table">
     <tr>
-      <th>Name</th>
-      <th>Vendor</th>
-      <th>User</th>
-      <th>Total</th>
       <th>Date</th>
-      <th colspan="3"></th>
+      <th>Vendor</th>
+      <th>Made By</th>
+      <th>Participants</th>
     </tr>
-  </thead>
 
-  <tbody>
     <% @shopping_trips.each do |shopping_trip| %>
       <tr>
-        <td><%= shopping_trip.name %></td>
-        <td><%= shopping_trip.vendor %></td>
-        <td><%= shopping_trip.user %></td>
-        <td><%= shopping_trip.total %></td>
         <td><%= shopping_trip.date %></td>
-        <td><%= link_to 'Show', shopping_trip %></td>
-        <td><%= link_to 'Edit', edit_shopping_trip_path(shopping_trip) %></td>
-        <td><%= link_to 'Destroy', shopping_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= shopping_trip.vendor.vendor_name %></td>
+        <td><%= shopping_trip.payer.user_name %></td>
+        <td><% shopping_trip.users.each do |user| %>
+              <%= user %>
+            <% end %>
+        </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+  </table>
 
-<br>
-
-<%= link_to 'New Shopping trip', new_shopping_trip_path %>
+<% else %>
+    <div class="jumbotron">
+      <h1>Welcome, new user!</h1>
+      <p class="lead">
+        You must sign in or sign up before you can access our super sweet,
+        top secret content.
+      </p>
+      <div class="row-fluid">
+        <div class="buttonHolder">
+          <%= link_to "Sign In", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+<% end %>
