@@ -22,5 +22,8 @@ module DownToSplit
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.assets.precompile += %w( expenses.css )
+    config.assets.precompile += %w( expenses.js )
+    config.assets.precompile += %w( d3.min.js )
   end
 end

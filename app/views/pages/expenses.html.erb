@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "expenses" %>
+
 <% @user = current_user %>
 <% if user_signed_in? %>
   <script type="text/javascript">participants = []; pids = [];</script>
@@ -12,21 +14,21 @@
 
       <hr>
     
-   		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
+      <%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
         <div class="form-group check_boxes optional shopping_trip_users">
           <label class="optional control-label">Participants</label>
           <div id="usearch-results">No users found.</div>
         </div>
 
-   			<%= f.simple_fields_for :vendors do |vendor| %>
+        <%= f.simple_fields_for :vendors do |vendor| %>
           <%= f.input :vendor_name, required: true, label: false, placeholder: 'Vendor', class: 'form_input' %>
         <% end %>
 
-   			<%= f.simple_fields_for :purchase do |p| %>
-   				<%= p.input :date_purchased, label: 'Expedition date', as: :date, required: false, html5: true %>
-   			<% end %>
+        <%= f.simple_fields_for :purchase do |p| %>
+          <%= p.input :date_purchased, label: 'Expedition date', as: :date, required: false, html5: true %>
+        <% end %>
 
-   			<div class="submit">
+        <div class="submit">
           <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
         </div>
       <% end %>
@@ -80,6 +82,17 @@
     </table>
   <% end %>
   
+  <br><hr>
+
+  <h3>Expense Information:</h3>
+  <!-- Statistics and visualizations -->
+  <div id="expense-info">
+  </div>
+  <p>
+    <b>{Most/average/overall} amount of money {spent/owed/in debt} over past {day/week/month/year/all time}</b><br>
+    <b>Current amount of money owed/in debt (in comparison to averages)
+  </p>
+  
 <% else %>
   <div class="jumbotron">
     <h1>Welcome, new user!</h1>
@@ -98,3 +111,5 @@
 
 <%= javascript_include_tag('vendor_search.js') %>
 <%= javascript_include_tag('participants.js') %>
+<%= javascript_include_tag('d3.min.js') %>
+<%= javascript_include_tag('expenses.js') %>
