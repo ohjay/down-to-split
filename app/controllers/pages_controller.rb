@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def live_search
     @userz = User.where("lower(username) like ?", ("%" + params[:q] + "%").downcase)
+    @userz = @userz.sort { |x, y| x.username.length <=> y.username.length }
+    @userz = @userz.first(5)
     render :layout => false
   end
   

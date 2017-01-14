@@ -1,7 +1,7 @@
 <% if @userz.nil? || @userz.empty? || (@userz.size == 1 && @userz.first == current_user) %>
   No users found.
 <% else %>
-  <ul>
+  <ul style="padding-left: 0.5em">
     <% @userz.each do |u| %>
       <% unless u == current_user %>
         <span class="checkbox">

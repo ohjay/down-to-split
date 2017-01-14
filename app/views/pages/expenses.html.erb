@@ -12,21 +12,21 @@
 
       <hr>
     
-   		<%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
+      <%= simple_form_for @shopping_trip, url: trip_path(@user, :date_purchased) do |f| %>
         <div class="form-group check_boxes optional shopping_trip_users">
           <label class="optional control-label">Participants</label>
           <div id="usearch-results">No users found.</div>
         </div>
 
-   			<%= f.simple_fields_for :vendors do |vendor| %>
+        <%= f.simple_fields_for :vendors do |vendor| %>
           <%= f.input :vendor_name, required: true, label: false, placeholder: 'Vendor', class: 'form_input' %>
         <% end %>
 
-   			<%= f.simple_fields_for :purchase do |p| %>
-   				<%= p.input :date_purchased, label: 'Expedition date', as: :date, required: false, html5: true %>
-   			<% end %>
+        <%= f.simple_fields_for :purchase do |p| %>
+          <%= p.input :date_purchased, label: 'Expedition date', as: :date, required: false, html5: true %>
+        <% end %>
 
-   			<div class="submit">
+        <div class="submit">
           <%= f.button :submit, "Add Shopping Trip", class: 'btn btn-success btn-lg btn-block' %>
         </div>
       <% end %>

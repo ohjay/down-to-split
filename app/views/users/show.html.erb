@@ -9,7 +9,7 @@
 
 <span>Your weekly budget: <%= number_to_currency(@user.weekly_budget) %></span><br>
 
-Weekly expenditures: <%= number_to_currency @total_spent %><br>
+Gross weekly expenditure: <%= number_to_currency @total_spent %><br>
 <% if @total_spent > @user.weekly_budget %>
 	You have exceeded your weekly budget by: <%= number_to_currency(@total_spent - @user.weekly_budget) %>
 <% else %>
